@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon État des Lieux · Le Bilan de Vie</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose:    #E8A0A0;
+    --rose-d:  #C97070;
+    --blush:   #F5E6E6;
+    --sage:    #A8C5B5;
+    --sage-d:  #7AAF97;
+    --cream:   #FBF7F4;
+    --bark:    #6B4E3D;
+    --ink:     #2D2020;
+    --mist:    #EDE8E8;
+    --gold:    #D4A853;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── ÉCRAN INTRO ── */
+  #intro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    background: linear-gradient(160deg, #FBF7F4 0%, #F0E8E8 60%, #E8EFF0 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #intro::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,160,160,0.15) 0%, transparent 70%);
+    top: -150px; right: -150px;
+    pointer-events: none;
+  }
+  #intro::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,197,181,0.18) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-d);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  h1.title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    line-height: 1.15;
+    color: var(--bark);
+    max-width: 600px;
+    margin-bottom: 24px;
+  }
+  h1.title em { font-style: italic; color: var(--rose-d); }
+
+  .intro-sub {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #7A5A5A;
+    max-width: 480px;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .badge-row {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+  .badge {
+    background: white;
+    border: 1.5px solid var(--mist);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: var(--bark);
+    font-weight: 400;
+  }
+
+  .btn-primary {
+    background: var(--bark);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 18px 44px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(107,78,61,0.25);
+  }
+  .btn-primary:hover {
+    background: var(--rose-d);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(201,112,112,0.35);
+  }
+
+  .note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #B09090;
+  }
+
+  /* ── QUIZ ── */
+  #quiz { display: none; min-height: 100vh; padding: 0; }
+
+  .quiz-header {
+    background: white;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--mist);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky; top: 0;
+    z-index: 10;
+  }
+
+  .logo-small {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--bark);
+    font-weight: 400;
+  }
+
+  .progress-wrap {
+    flex: 1;
+    height: 4px;
+    background: var(--mist);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--rose), var(--sage));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: #B09090;
+    white-space: nowrap;
+  }
+
+  .quiz-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  .dimension-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blush);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: var(--rose-d);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .dim-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--rose-d);
+  }
+
+  .question-num {
+    font-size: 12px;
+    color: #B09090;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3.5vw, 26px);
+    line-height: 1.4;
+    color: var(--bark);
+    margin-bottom: 12px;
+  }
+
+  .question-hint {
+    font-size: 14px;
+    color: #9A7A7A;
+    margin-bottom: 36px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .scale-container { margin-bottom: 48px; }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #B09090;
+    margin-bottom: 12px;
+  }
+
+  .scale-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .scale-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--mist);
+    background: white;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .scale-btn:hover {
+    border-color: var(--rose);
+    background: var(--blush);
+    transform: scale(1.08);
+  }
+  .scale-btn.selected {
+    background: var(--bark);
+    border-color: var(--bark);
+    color: white;
+    transform: scale(1.12);
+    box-shadow: 0 4px 16px rgba(107,78,61,0.3);
+  }
+
+  .emoji-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 4px;
+    font-size: 18px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .btn-back {
+    background: none;
+    border: 1.5px solid var(--mist);
+    border-radius: 100px;
+    padding: 14px 28px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: #9A7A7A;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-back:hover { border-color: var(--bark); color: var(--bark); }
+
+  .btn-next {
+    background: var(--bark);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 14px 36px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .btn-next.active { opacity: 1; pointer-events: all; }
+  .btn-next.active:hover { background: var(--rose-d); transform: translateY(-1px); }
+
+  .slide { display: none; animation: fadeUp 0.4s ease; }
+  .slide.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RÉSULTATS ── */
+  #results { display: none; }
+
+  .results-header {
+    background: linear-gradient(135deg, var(--bark) 0%, #4A3028 100%);
+    padding: 60px 24px 80px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-header::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    top: -80px; right: -80px;
+  }
+
+  .results-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
+  }
+
+  .results-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5vw, 40px);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .results-title em { font-style: italic; color: var(--rose); }
+
+  .results-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .results-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* RADAR */
+  .radar-wrap {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 24px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .radar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--bark);
+    margin-bottom: 8px;
+  }
+  .radar-sub {
+    font-size: 13px;
+    color: #B09090;
+    margin-bottom: 32px;
+  }
+
+  canvas#radar {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* CARDS */
+  .cards-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--bark);
+    margin-bottom: 6px;
+  }
+  .cards-sub {
+    font-size: 14px;
+    color: #9A7A7A;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .dim-card {
+    background: white;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--mist);
+    transition: transform 0.2s;
+  }
+  .dim-card:hover { transform: translateY(-2px); }
+  .dim-card.high { border-left-color: var(--sage-d); }
+  .dim-card.mid  { border-left-color: var(--gold); }
+  .dim-card.low  { border-left-color: var(--rose-d); }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card-icon { font-size: 24px; }
+  .card-name {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--bark);
+    flex: 1;
+  }
+  .card-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--bark);
+  }
+  .card-score span { font-size: 14px; font-weight: 300; color: #B09090; }
+
+  .score-bar-bg {
+    height: 6px;
+    background: var(--mist);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+  .high .score-bar-fill { background: var(--sage-d); }
+  .mid  .score-bar-fill { background: var(--gold); }
+  .low  .score-bar-fill { background: var(--rose-d); }
+
+  .card-msg {
+    font-size: 13px;
+    color: #9A7A7A;
+    line-height: 1.6;
+  }
+
+  /* MESSAGE FINAL */
+  .message-box {
+    background: linear-gradient(135deg, var(--blush) 0%, #EAF0EE 100%);
+    border-radius: 24px;
+    padding: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    border: 1px solid rgba(232,160,160,0.3);
+  }
+  .message-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--bark);
+    margin-bottom: 16px;
+  }
+  .message-box p {
+    font-size: 15px;
+    color: #7A5A5A;
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+
+  .btn-cta {
+    background: linear-gradient(135deg, var(--rose-d), var(--bark));
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 18px 44px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 8px 30px rgba(107,78,61,0.3);
+    transition: all 0.3s;
+  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(107,78,61,0.4); }
+
+  .restart-btn {
+    display: block;
+    margin: 16px auto 0;
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #B09090;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  @media (max-width: 480px) {
+    .scale-btn { width: 42px; height: 42px; font-size: 13px; }
+    .scale-buttons { gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ INTRO ═══════════════ -->
+<section id="intro">
+  <p class="eyebrow">✦ Ton bilan personnel</p>
+  <h1 class="title">Où en es-tu <em>vraiment</em> dans ta vie ?</h1>
+  <p class="intro-sub">
+    Un quiz doux et honnête pour faire le point sur 8 dimensions essentielles de ta vie.
+    Pas de bonne ou mauvaise réponse — seulement ta vérité du moment.
+  </p>
+  <div class="badge-row">
+    <span class="badge">⏱ 5 minutes</span>
+    <span class="badge">🌸 8 dimensions</span>
+    <span class="badge">📊 Résultat visuel</span>
+    <span class="badge">💛 Bienveillant</span>
+  </div>
+  <button class="btn-primary" onclick="startQuiz()">Commencer mon état des lieux</button>
+  <p class="note">Pour toi. Rien que pour toi. 🌿</p>
+</section>
+
+<!-- ═══════════════ QUIZ ═══════════════ -->
+<section id="quiz">
+  <div class="quiz-header">
+    <span class="logo-small">Mon État des Lieux</span>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <span class="progress-label" id="progressLabel">1 / 16</span>
+  </div>
+
+  <div class="quiz-body">
+    <div id="slides-container"></div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" id="btnBack" onclick="prevSlide()">← Précédent</button>
+      <button class="btn-next" id="btnNext" onclick="nextSlide()">Suivant →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ RÉSULTATS ═══════════════ -->
+<section id="results">
+  <div class="results-header">
+    <p class="results-eyebrow">✦ Ton portrait de vie</p>
+    <h2 class="results-title">Voici ton <em>état des lieux</em></h2>
+    <p class="results-sub">Ce bilan est une boussole, pas un jugement. Chaque zone est une invitation à te reconnecter à toi-même.</p>
+  </div>
+
+  <div class="results-body">
+    <div class="radar-wrap">
+      <p class="radar-title">Ta toile de vie</p>
+      <p class="radar-sub">Plus la surface colorée est large, plus tu te sens épanouie dans cette dimension.</p>
+      <canvas id="radar" width="500" height="500"></canvas>
+    </div>
+
+    <p class="cards-title">Tes 8 dimensions en détail</p>
+    <p class="cards-sub">Chaque carte te donne un signal. Les zones en <strong style="color:var(--rose-d)">rouge doux</strong> sont celles à chouchouter en priorité. Celles en <strong style="color:var(--sage-d)">vert sauge</strong> sont tes ressources. 🌿</p>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+
+    <div class="message-box">
+      <h3 id="finalTitle">Tu n'as pas à tout réparer en même temps.</h3>
+      <p id="finalMsg">Ce bilan est ton point de départ, pas ta destination. Choisis une zone, commence doucement, et avance à ton rythme.</p>
+      <button class="btn-cta" onclick="window.location.href='https://www.kanel-alignee.com/4456178c'">Je veux aller plus loin 🌸</button>
+    </div>
+
+    <button class="restart-btn" onclick="restart()">↩ Refaire le quiz</button>
+  </div>
+</section>
+
+<script>
+const DIMENSIONS = [
+  {
+    id: 'identite',
+    name: 'Identité & Sens de soi',
+    icon: '🌸',
+    color: '#E8A0A0',
+    questions: [
+      {
+        q: "Quand tu penses à toi — pas à la maman, pas à l'épouse — qui es-tu ?",
+        hint: "Pense à tes valeurs, tes désirs profonds, ce qui te fait te sentir vivante.",
+        min: "Je ne sais plus qui je suis",
+        max: "Je me connais bien"
+      },
+      {
+        q: "Tu prends des décisions en accord avec ce qui est vraiment important pour toi ?",
+        hint: "Tes choix quotidiens reflètent-ils qui tu es vraiment, ou tu vis pour les autres ?",
+        min: "Pas du tout",
+        max: "Totalement"
+      }
+    ],
+    messages: {
+      low: "Tu t'es un peu perdue en chemin. C'est normal — et retrouver ton fil est possible, pas à pas.",
+      mid: "Tu as encore des zones d'ombre sur toi-même, mais la lumière est là. Tu commences à te reconnecter.",
+      high: "Tu te connais et tu t'honores. C'est une force immense — continue à cultiver cette connaissance de toi."
+    }
+  },
+  {
+    id: 'corps',
+    name: 'Corps & Bien-être',
+    icon: '🌿',
+    color: '#A8C5B5',
+    questions: [
+      {
+        q: "Comment tu te sens dans ton corps au quotidien ?",
+        hint: "Énergie, vitalité, rapport à ton corps physique — pas l'apparence, mais la sensation intérieure.",
+        min: "Épuisée, déconnectée",
+        max: "Bien, en accord"
+      },
+      {
+        q: "Tu prends soin de toi — sommeil, alimentation, mouvement — avec bienveillance ?",
+        hint: "Pas parfaitement, mais avec une attention douce à tes besoins physiques.",
+        min: "Jamais vraiment",
+        max: "Oui, régulièrement"
+      }
+    ],
+    messages: {
+      low: "Ton corps te parle — fatigue, tension, déconnexion. Il a besoin d'attention douce, pas de performance.",
+      mid: "Tu fais des efforts mais ce n'est pas encore un automatisme. Petits rituels, grandes différences.",
+      high: "Tu entends ton corps et tu l'honores. C'est la base de tout le reste — bravo."
+    }
+  },
+  {
+    id: 'maternite',
+    name: 'Maternité & Lien',
+    icon: '💛',
+    color: '#D4A853',
+    questions: [
+      {
+        q: "Tu te sens épanouie dans ton rôle de maman — ni coupable, ni dépassée ?",
+        hint: "La culpabilité est l'ennemie n°1 des mamans. Honnêteté douce ici.",
+        min: "Beaucoup de culpabilité",
+        max: "Je me sens bien"
+      },
+      {
+        q: "Tu as un lien de qualité avec tes enfants — présence, connexion, joie partagée ?",
+        hint: "Pas la quantité de temps, mais la qualité de ta présence.",
+        min: "Je suis là mais absente",
+        max: "Connexion forte"
+      }
+    ],
+    messages: {
+      low: "La culpabilité t'écrase. Mais être une bonne mère commence par prendre soin de toi. Tu n'es pas seule.",
+      mid: "Tu jonglles. Certains jours mieux que d'autres. C'est humain et c'est déjà beaucoup.",
+      high: "Tu vis la maternité avec joie et présence. Ce lien que tu nourris est un cadeau pour tes enfants."
+    }
+  },
+  {
+    id: 'couple',
+    name: 'Couple & Intimité',
+    icon: '🌺',
+    color: '#D4688A',
+    questions: [
+      {
+        q: "Tu te sens femme — désirée, désirante — au-delà du rôle de mère ?",
+        hint: "Ta féminité, ton intimité, ton désir propre. Un espace souvent oublié.",
+        min: "Complètement invisible",
+        max: "Vivante et connectée"
+      },
+      {
+        q: "La relation avec ton partenaire (ou avec toi-même si solo) te nourrit ?",
+        hint: "Un partenaire qui soutient, ou une solitude choisie et apaisée.",
+        min: "Épuisante ou inexistante",
+        max: "Nourrissante"
+      }
+    ],
+    messages: {
+      low: "Cette dimension est en veille. Il est temps de rallumer doucement la flamme — à deux, ou seule avec toi-même.",
+      mid: "Des hauts et des bas. Tu vois ce qui manque. C'est déjà un pas vers le changement.",
+      high: "Tu entretiens cette dimension avec soin. C'est précieux et ça se voit dans ton équilibre global."
+    }
+  },
+  {
+    id: 'social',
+    name: 'Vie Sociale & Amitié',
+    icon: '🤝',
+    color: '#9FB8D8',
+    questions: [
+      {
+        q: "Tu as des relations qui te nourrissent vraiment — échanges profonds, soutien, rires ?",
+        hint: "Pas le nombre de contacts, mais la qualité des liens qui comptent.",
+        min: "Je me sens très seule",
+        max: "Entourée et nourrie"
+      },
+      {
+        q: "Tu oses demander de l'aide ou partager ce que tu vis sans te sentir un fardeau ?",
+        hint: "Beaucoup de mamans portent tout seules. C'est du courage de demander.",
+        min: "Jamais",
+        max: "Facilement"
+      }
+    ],
+    messages: {
+      low: "L'isolement est lourd. Retrouver une communauté, même petite, peut tout changer.",
+      mid: "Tu as des liens, mais ils sont parfois superficiels ou tu n'oses pas te montrer vraiment.",
+      high: "Tu as créé un cercle qui te soutient. Ces liens sont une vraie richesse."
+    }
+  },
+  {
+    id: 'travail',
+    name: 'Travail & Réalisation',
+    icon: '✨',
+    color: '#B09CD4',
+    questions: [
+      {
+        q: "Ton activité professionnelle (ou créative) te donne un sentiment d'accomplissement ?",
+        hint: "Peu importe ce que c'est — travail salarié, freelance, projet personnel, ou maison.",
+        min: "Aucun sens, je subis",
+        max: "Très épanouissant"
+      },
+      {
+        q: "Tu penses à tes propres ambitions et projets — pas seulement ceux de la famille ?",
+        hint: "Tes rêves, tes envies, ce que TU veux construire.",
+        min: "J'ai oublié mes rêves",
+        max: "Je les cultive"
+      }
+    ],
+    messages: {
+      low: "Tu t'es effacée derrière les autres. Tes rêves existent encore — ils attendent juste d'être réveillés.",
+      mid: "Tu sens l'envie mais pas encore les moyens ou la permission. On y travaille.",
+      high: "Tu avances sur ton chemin. Tes ambitions font partie de ta vie. C'est puissant."
+    }
+  },
+  {
+    id: 'espace',
+    name: 'Espace & Ressourcement',
+    icon: '🍃',
+    color: '#7AAF97',
+    questions: [
+      {
+        q: "Tu as des moments rien que pour toi — sans rôle à jouer, sans rien à produire ?",
+        hint: "Ces moments de pause où tu existes juste pour toi.",
+        min: "Jamais, c'est luxe",
+        max: "Oui, régulièrement"
+      },
+      {
+        q: "Tu as un ou des endroits (physiques ou mentaux) où tu te ressources vraiment ?",
+        hint: "Un coin de maison, la nature, la lecture, la musique... un espace à toi.",
+        min: "Je n'ai rien à moi",
+        max: "J'ai mon espace"
+      }
+    ],
+    messages: {
+      low: "Tu n'as pas de bulle à toi. Se ressourcer n'est pas égoïste — c'est essentiel pour tenir.",
+      mid: "Tu commences à comprendre l'importance de ces pauses. Maintenant les rendre régulières.",
+      high: "Tu sais te ressourcer. C'est une compétence rare et précieuse — garde-la précieusement."
+    }
+  },
+  {
+    id: 'spirituel',
+    name: 'Sens & Alignement',
+    icon: '🌙',
+    color: '#C5A8D4',
+    questions: [
+      {
+        q: "Ta vie a un sens, une direction — tu sais (en gros) vers quoi tu veux aller ?",
+        hint: "Pas besoin d'un plan parfait. Juste une étoile du nord, une intuition.",
+        min: "Je suis complètement perdue",
+        max: "J'ai une direction claire"
+      },
+      {
+        q: "Tu te sens alignée — ce que tu fais ressemble à qui tu es vraiment ?",
+        hint: "La cohérence entre tes valeurs et ta vie quotidienne.",
+        min: "Grande dissonance",
+        max: "Bien alignée"
+      }
+    ],
+    messages: {
+      low: "Tu cherches ta boussole. Ce sentiment de vide est le signal qu'une reconnexion à toi-même s'impose.",
+      mid: "Tu as des intuitions mais encore du brouillard. La clarté vient en marchant, pas en attendant.",
+      high: "Tu vis en accord avec toi-même. C'est l'alignement le plus précieux qui soit."
+    }
+  }
+];
+
+let currentSlide = 0;
+let answers = {};
+let totalQuestions = 0;
+
+function buildSlides() {
+  const container = document.getElementById('slides-container');
+  container.innerHTML = '';
+  let slideIndex = 0;
+  totalQuestions = 0;
+
+  DIMENSIONS.forEach((dim, dIdx) => {
+    dim.questions.forEach((q, qIdx) => {
+      const key = `${dim.id}_${qIdx}`;
+      const slide = document.createElement('div');
+      slide.className = 'slide' + (slideIndex === 0 ? ' active' : '');
+      slide.dataset.key = key;
+
+      let btns = '';
+      for (let v = 1; v <= 10; v++) {
+        btns += `<button class="scale-btn" data-value="${v}" data-key="${key}" onclick="selectAnswer('${key}', ${v}, this)">${v}</button>`;
+      }
+
+      slide.innerHTML = `
+        <div class="dimension-tag"><span class="dim-dot" style="background:${dim.color}"></span>${dim.name}</div>
+        <p class="question-num">Question ${slideIndex + 1} sur ${getTotalQ()}</p>
+        <p class="question-text">${q.q}</p>
+        <p class="question-hint">${q.hint}</p>
+        <div class="scale-container">
+          <div class="scale-labels"><span>1 – ${q.min}</span><span>10 – ${q.max}</span></div>
+          <div class="scale-buttons">${btns}</div>
+          <div class="emoji-row"><span>😔</span><span>😐</span><span>🙂</span><span>😊</span><span>🌟</span></div>
+        </div>
+      `;
+      container.appendChild(slide);
+      slideIndex++;
+      totalQuestions++;
+    });
+  });
+
+  // Fix question nums
+  document.querySelectorAll('.question-num').forEach((el, i) => {
+    el.textContent = `Question ${i + 1} sur ${totalQuestions}`;
+  });
+}
+
+function getTotalQ() {
+  return DIMENSIONS.reduce((s, d) => s + d.questions.length, 0);
+}
+
+function selectAnswer(key, value, btn) {
+  answers[key] = value;
+  btn.closest('.scale-buttons').querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  document.getElementById('btnNext').classList.add('active');
+}
+
+function getSlides() { return document.querySelectorAll('.slide'); }
+
+function updateProgress() {
+  const slides = getSlides();
+  const pct = ((currentSlide + 1) / slides.length) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${currentSlide + 1} / ${slides.length}`;
+  document.getElementById('btnBack').style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
+}
+
+function nextSlide() {
+  const slides = getSlides();
+  const key = slides[currentSlide].dataset.key;
+  if (!answers[key]) return;
+
+  slides[currentSlide].classList.remove('active');
+  currentSlide++;
+
+  if (currentSlide >= slides.length) {
+    showResults();
+    return;
+  }
+
+  slides[currentSlide].classList.add('active');
+
+  const nextKey = slides[currentSlide].dataset.key;
+  const btn = document.getElementById('btnNext');
+  btn.classList.toggle('active', !!answers[nextKey]);
+
+  if (currentSlide === slides.length - 1) {
+    btn.textContent = 'Voir mes résultats ✨';
+  } else {
+    btn.textContent = 'Suivant →';
+  }
+
+  updateProgress();
+  window.scrollTo(0, 0);
+}
+
+function prevSlide() {
+  if (currentSlide === 0) return;
+  const slides = getSlides();
+  slides[currentSlide].classList.remove('active');
+  currentSlide--;
+  slides[currentSlide].classList.add('active');
+  document.getElementById('btnNext').classList.add('active');
+  document.getElementById('btnNext').textContent = currentSlide === slides.length - 2 ? 'Voir mes résultats ✨' : 'Suivant →';
+  updateProgress();
+  window.scrollTo(0, 0);
+}
+
+function startQuiz() {
+  buildSlides();
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  updateProgress();
+}
+
+function computeScores() {
+  return DIMENSIONS.map(dim => {
+    let total = 0;
+    dim.questions.forEach((q, i) => {
+      const key = `${dim.id}_${i}`;
+      total += (answers[key] || 0);
+    });
+    const avg = total / dim.questions.length;
+    return { ...dim, score: avg };
+  });
+}
+
+function showResults() {
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo(0, 0);
+
+  const scores = computeScores();
+  drawRadar(scores);
+  buildCards(scores);
+  buildFinalMessage(scores);
+}
+
+function drawRadar(scores) {
+  const canvas = document.getElementById('radar');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  const R = Math.min(W, H) / 2 - 60;
+  const N = scores.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const angleStep = (Math.PI * 2) / N;
+  const startAngle = -Math.PI / 2;
+
+  // Grille
+  for (let level = 2; level <= 10; level += 2) {
+    const r = (level / 10) * R;
+    ctx.beginPath();
+    for (let i = 0; i < N; i++) {
+      const a = startAngle + i * angleStep;
+      const x = cx + r * Math.cos(a);
+      const y = cy + r * Math.sin(a);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(107,78,61,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    if (level === 10 || level === 6 || level === 2) {
+      ctx.fillStyle = 'rgba(107,78,61,0.3)';
+      ctx.font = '11px DM Sans';
+      ctx.fillText(level, cx + r + 4, cy + 4);
+    }
+  }
+
+  // Axes
+  for (let i = 0; i < N; i++) {
+    const a = startAngle + i * angleStep;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
+    ctx.strokeStyle = 'rgba(107,78,61,0.1)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Zone remplie
+  ctx.beginPath();
+  scores.forEach((s, i) => {
+    const a = startAngle + i * angleStep;
+    const r = (s.score / 10) * R;
+    const x = cx + r * Math.cos(a);
+    const y = cy + r * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(232,160,160,0.25)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(201,112,112,0.8)';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Points
+  scores.forEach((s, i) => {
+    const a = startAngle + i * angleStep;
+    const r = (s.score / 10) * R;
+    const x = cx + r * Math.cos(a);
+    const y = cy + r * Math.sin(a);
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = s.color;
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+
+  // Labels
+  scores.forEach((s, i) => {
+    const a = startAngle + i * angleStep;
+    const labelR = R + 40;
+    const x = cx + labelR * Math.cos(a);
+    const y = cy + labelR * Math.sin(a);
+    ctx.fillStyle = '#6B4E3D';
+    ctx.font = '13px DM Sans';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    // Icon above text
+    ctx.font = '18px serif';
+    ctx.fillText(s.icon, x, y - 10);
+    ctx.font = '11px DM Sans';
+    ctx.fillStyle = '#9A7A7A';
+    const shortName = s.name.split(' & ')[0];
+    ctx.fillText(shortName, x, y + 8);
+    ctx.fillStyle = '#6B4E3D';
+    ctx.font = 'bold 12px DM Sans';
+    ctx.fillText(s.score.toFixed(1), x, y + 22);
+  });
+}
+
+function buildCards(scores) {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = '';
+  const sorted = [...scores].sort((a, b) => a.score - b.score);
+
+  sorted.forEach(s => {
+    const level = s.score < 4 ? 'low' : s.score < 7 ? 'mid' : 'high';
+    const msg = s.messages[level];
+    const pct = (s.score / 10) * 100;
+
+    const card = document.createElement('div');
+    card.className = `dim-card ${level}`;
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="card-icon">${s.icon}</span>
+        <span class="card-name">${s.name}</span>
+        <span class="card-score">${s.score.toFixed(1)}<span>/10</span></span>
+      </div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" style="width:0%" data-pct="${pct}"></div>
+      </div>
+      <p class="card-msg">${msg}</p>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll('.score-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 200);
+}
+
+function buildFinalMessage(scores) {
+  const avg = scores.reduce((s, d) => s + d.score, 0) / scores.length;
+  const lowest = scores.sort((a, b) => a.score - b.score)[0];
+
+  let title, msg;
+  if (avg < 4) {
+    title = "Tu portes beaucoup. Trop, peut-être.";
+    msg = `Ton état des lieux montre une fatigue profonde dans plusieurs dimensions. Ce n'est pas une fatalité — c'est un appel à te recentrer sur toi. Commence par la dimension <strong>"${lowest.name}"</strong> : c'est là que tout peut commencer à changer.`;
+  } else if (avg < 6.5) {
+    title = "Tu avances, mais tu te perds parfois en chemin.";
+    msg = `Tu as des ressources, mais certaines zones réclament ton attention. La dimension <strong>"${lowest.name}"</strong> mérite d'être ta priorité. Un petit pas dans la bonne direction peut tout déplacer.`;
+  } else {
+    title = "Tu es sur ton chemin. Continue.";
+    msg = `Ton bilan montre une femme qui se connaît et prend soin d'elle. Il reste des zones à cultiver — notamment <strong>"${lowest.name}"</strong> — mais tu as les bases. Construis sur ces fondations.`;
+  }
+
+  document.getElementById('finalTitle').textContent = title;
+  document.getElementById('finalMsg').innerHTML = msg;
+}
+
+function restart() {
+  answers = {};
+  currentSlide = 0;
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('intro').style.display = 'flex';
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

@@ -558,7 +558,7 @@ fbq('track', 'PageView');
     <span class="badge">📊 Résultat visuel</span>
     <span class="badge">💛 Bienveillant</span>
   </div>
-  <button class="btn-primary" onclick="startQuiz()">Commencer mon état des lieux</button>
+ <button class="btn-primary" onclick="fbq('track', 'Lead'); startQuiz()">Commencer mon état des lieux</button>
   <p class="note">Pour toi. Rien que pour toi. 🌿</p>
 </section>
 
@@ -605,7 +605,7 @@ fbq('track', 'PageView');
     <div class="message-box">
       <h3 id="finalTitle">Tu n'as pas à tout réparer en même temps.</h3>
       <p id="finalMsg">Ce bilan est ton point de départ, pas ta destination. Choisis une zone, commence doucement, et avance à ton rythme.</p>
-      <button class="btn-cta" onclick="window.location.href='https://www.kanel-alignee.com/4456178c'">Je veux aller plus loin 🌸</button>
+     <button class="btn-cta" onclick="fbq('track', 'Contact'); window.location.href='https://www.kanel-alignee.com/4456178c'">Je veux aller plus loin 🌸</button>
     </div>
 
     <button class="restart-btn" onclick="restart()">↩ Refaire le quiz</button>
@@ -950,7 +950,7 @@ function showResults() {
   const scores = computeScores();
   drawRadar(scores);
   buildCards(scores);
-  buildFinalMessage(scores);
+  buildFinalMessage(scores); fbq('trackCustom', 'QuizTermine');
 }
 
 function drawRadar(scores) {

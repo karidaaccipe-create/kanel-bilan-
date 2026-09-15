@@ -2,11 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Quelle place reste-t-il à la femme derrière tout ce que tu portes ? · Kanel Alignée</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon État des Lieux · Le Bilan de Vie</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -25,832 +23,1095 @@ fbq('track', 'PageView');
   src="https://www.facebook.com/tr?id=1602676050828519&ev=PageView&noscript=1"/>
 </noscript>
 <!-- End Meta Pixel Code -->
-<style>
+  <style>
   :root {
-    --cream:       #FDF8F3;
-    --cream-deep:  #F5EADE;
-    --terracotta:  #D4614A;
-    --terracotta-d:#B84E3B;
-    --sauge:       #5A9B78;
-    --miel:        #D4A853;
-    --ecorce:      #5C3D2E;
-    --insight-bg:  #F7E9DF;
-    --insight-line:#E7C9A8;
-    --ink:         #5C3D2E;
-    --muted:       #9C8172;
-    --font-title:  'Playfair Display', serif;
-    --font-body:   'Lato', sans-serif;
-    --font-script: 'Caveat', cursive;
+    --rose:    #E8A0A0;
+    --rose-d:  #C97070;
+    --blush:   #F5E6E6;
+    --sage:    #A8C5B5;
+    --sage-d:  #7AAF97;
+    --cream:   #FBF7F4;
+    --bark:    #6B4E3D;
+    --ink:     #2D2020;
+    --mist:    #EDE8E8;
+    --gold:    #D4A853;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { -webkit-text-size-adjust: 100%; }
-
   body {
-    font-family: var(--font-body);
+    font-family: 'DM Sans', sans-serif;
     background: var(--cream);
     color: var(--ink);
     min-height: 100vh;
-    line-height: 1.6;
   }
 
-  .screen { display: none; min-height: 100vh; }
-  .screen.active { display: block; animation: fadeUp 0.45s ease; }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  button { font-family: inherit; }
-
-  .eyebrow {
-    font-family: var(--font-script);
-    font-size: 22px;
-    letter-spacing: 0.5px;
-    color: var(--terracotta);
-    font-weight: 600;
-    margin-bottom: 18px;
-  }
-
-  /* ── INTRO ── */
-  #intro.active {
+  /* ── ÉCRAN INTRO ── */
+  #intro {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  }
-  #intro {
-    padding: 64px 24px;
+    padding: 40px 24px;
     text-align: center;
-    background:
-      radial-gradient(circle at 15% 10%, rgba(212,97,74,0.07) 0%, transparent 45%),
-      radial-gradient(circle at 85% 90%, rgba(90,155,120,0.10) 0%, transparent 45%),
-      var(--cream);
+    background: linear-gradient(160deg, #FBF7F4 0%, #F0E8E8 60%, #E8EFF0 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #intro::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,160,160,0.15) 0%, transparent 70%);
+    top: -150px; right: -150px;
+    pointer-events: none;
+  }
+  #intro::after {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,197,181,0.18) 0%, transparent 70%);
+    bottom: -100px; left: -100px;
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose-d);
+    margin-bottom: 20px;
+    font-weight: 500;
   }
 
   h1.title {
-    font-family: var(--font-title);
-    font-weight: 600;
-    font-size: clamp(30px, 6.4vw, 50px);
-    line-height: 1.2;
-    color: var(--ecorce);
-    max-width: 640px;
-    margin-bottom: 28px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    line-height: 1.15;
+    color: var(--bark);
+    max-width: 600px;
+    margin-bottom: 24px;
   }
+  h1.title em { font-style: italic; color: var(--rose-d); }
 
-  .intro-line {
-    font-size: clamp(17px, 2.4vw, 19px);
-    line-height: 1.7;
-    color: var(--ink);
-    max-width: 520px;
-    margin: 0 auto 18px;
-  }
-
-  .intro-line.emphasis {
-    font-family: var(--font-title);
-    font-style: italic;
-    font-size: clamp(19px, 2.8vw, 22px);
-    color: var(--terracotta-d);
-  }
-
-  .intro-disclaimer {
+  .intro-sub {
     font-size: 16px;
     line-height: 1.7;
-    color: var(--muted);
-    font-style: italic;
+    color: #7A5A5A;
     max-width: 480px;
-    margin: 22px auto 40px;
+    margin-bottom: 40px;
+    font-weight: 300;
   }
 
   .badge-row {
-    display: flex; gap: 10px; flex-wrap: wrap;
+    display: flex; gap: 12px; flex-wrap: wrap;
     justify-content: center;
-    margin-bottom: 36px;
+    margin-bottom: 48px;
   }
   .badge {
-    background: var(--cream-deep);
-    border: 1px solid var(--insight-line);
+    background: white;
+    border: 1.5px solid var(--mist);
     border-radius: 100px;
-    padding: 8px 20px;
-    font-size: 14px;
-    color: var(--ecorce);
-    font-weight: 700;
-    letter-spacing: 0.3px;
+    padding: 8px 18px;
+    font-size: 13px;
+    color: var(--bark);
+    font-weight: 400;
   }
 
   .btn-primary {
-    background: var(--terracotta);
-    color: var(--cream);
+    background: var(--bark);
+    color: white;
     border: none;
     border-radius: 100px;
-    padding: 20px 48px;
-    font-size: 17px;
-    font-weight: 700;
+    padding: 18px 44px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
     cursor: pointer;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 28px rgba(212,97,74,0.3);
+    box-shadow: 0 8px 30px rgba(107,78,61,0.25);
   }
-  .btn-primary:hover { background: var(--terracotta-d); transform: translateY(-2px); }
+  .btn-primary:hover {
+    background: var(--rose-d);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(201,112,112,0.35);
+  }
+
+  .note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #B09090;
+  }
 
   /* ── QUIZ ── */
+  #quiz { display: none; min-height: 100vh; padding: 0; }
+
   .quiz-header {
-    background: var(--cream);
-    padding: 22px 24px 18px;
+    background: white;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--mist);
     display: flex;
     align-items: center;
-    gap: 18px;
-    position: sticky; top: env(safe-area-inset-top, 0px);
+    gap: 16px;
+    position: sticky; top: 0;
     z-index: 10;
-    max-width: 640px;
-    margin: 0 auto;
   }
 
-  .back-link {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-size: 15px;
-    font-style: italic;
-    cursor: pointer;
-    white-space: nowrap;
-    visibility: hidden;
+  .logo-small {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--bark);
+    font-weight: 400;
   }
-  .back-link.visible { visibility: visible; }
 
   .progress-wrap {
     flex: 1;
-    height: 5px;
-    background: var(--cream-deep);
+    height: 4px;
+    background: var(--mist);
     border-radius: 4px;
     overflow: hidden;
   }
   .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--miel), var(--terracotta));
+    background: linear-gradient(90deg, var(--rose), var(--sage));
     border-radius: 4px;
     transition: width 0.5s ease;
     width: 0%;
   }
   .progress-label {
-    font-size: 14px;
-    color: var(--muted);
-    font-style: italic;
+    font-size: 12px;
+    color: #B09090;
     white-space: nowrap;
   }
 
   .quiz-body {
-    max-width: 640px;
+    max-width: 680px;
     margin: 0 auto;
-    padding: 32px 24px 80px;
+    padding: 48px 24px 80px;
+  }
+
+  .dimension-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--blush);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: var(--rose-d);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .dim-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--rose-d);
+  }
+
+  .question-num {
+    font-size: 12px;
+    color: #B09090;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
   }
 
   .question-text {
-    font-family: var(--font-title);
-    font-weight: 600;
-    font-size: clamp(23px, 4vw, 30px);
-    line-height: 1.35;
-    color: var(--ecorce);
-    margin-bottom: 36px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3.5vw, 26px);
+    line-height: 1.4;
+    color: var(--bark);
+    margin-bottom: 12px;
   }
 
-  .options { display: flex; flex-direction: column; gap: 14px; }
+  .question-hint {
+    font-size: 14px;
+    color: #9A7A7A;
+    margin-bottom: 36px;
+    font-style: italic;
+    line-height: 1.6;
+  }
 
-  .option-btn {
-    text-align: left;
+  .scale-container { margin-bottom: 48px; }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #B09090;
+    margin-bottom: 12px;
+  }
+
+  .scale-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .scale-btn {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--mist);
     background: white;
-    border: 1.5px solid var(--insight-line);
-    border-radius: 18px;
-    padding: 20px 24px;
-    font-size: 17px;
-    line-height: 1.5;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
     color: var(--ink);
     cursor: pointer;
     transition: all 0.2s ease;
-    min-height: 64px;
+    display: flex; align-items: center; justify-content: center;
   }
-  .option-btn:hover { border-color: var(--sauge); background: var(--cream-deep); }
-  .option-btn.selected {
-    background: var(--terracotta);
-    border-color: var(--terracotta);
-    color: var(--cream);
+  .scale-btn:hover {
+    border-color: var(--rose);
+    background: var(--blush);
+    transform: scale(1.08);
+  }
+  .scale-btn.selected {
+    background: var(--bark);
+    border-color: var(--bark);
+    color: white;
+    transform: scale(1.12);
+    box-shadow: 0 4px 16px rgba(107,78,61,0.3);
   }
 
-  /* ── CAPTURE ── */
-  #capture .quiz-body {
+  .emoji-row {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 4px;
+    font-size: 18px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 12px;
     align-items: center;
-    text-align: center;
-    padding-top: 56px;
   }
 
-  .capture-title {
-    font-family: var(--font-title);
-    font-weight: 600;
-    font-size: clamp(24px, 4.4vw, 32px);
-    color: var(--ecorce);
-    max-width: 460px;
-    margin-bottom: 14px;
-  }
-
-  .capture-sub {
-    font-size: 16px;
-    color: var(--muted);
-    font-style: italic;
-    max-width: 420px;
-    margin-bottom: 36px;
-  }
-
-  .capture-form {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .capture-form input {
-    width: 100%;
-    font-family: var(--font-body);
-    font-size: 17px;
-    padding: 18px 22px;
+  .btn-back {
+    background: none;
+    border: 1.5px solid var(--mist);
     border-radius: 100px;
-    border: 1.5px solid var(--insight-line);
-    background: white;
-    color: var(--ink);
-  }
-  .capture-form input:focus {
-    outline: none;
-    border-color: var(--terracotta);
-  }
-
-  .capture-error {
-    color: #A5433A;
-    font-size: 15px;
-    font-style: italic;
-    display: none;
-  }
-  .capture-error.visible { display: block; }
-
-  .capture-note {
+    padding: 14px 28px;
     font-size: 14px;
-    color: var(--muted);
-    font-style: italic;
-    margin-top: 18px;
-    max-width: 380px;
+    font-family: 'DM Sans', sans-serif;
+    color: #9A7A7A;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-back:hover { border-color: var(--bark); color: var(--bark); }
+
+  .btn-next {
+    background: var(--bark);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 14px 36px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .btn-next.active { opacity: 1; pointer-events: all; }
+  .btn-next.active:hover { background: var(--rose-d); transform: translateY(-1px); }
+
+  .slide { display: none; animation: fadeUp 0.4s ease; }
+  .slide.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── RESULTS ── */
-  .results-body {
-    max-width: 620px;
-    margin: 0 auto;
-    padding: 72px 24px 90px;
+  /* ── RÉSULTATS ── */
+  #results { display: none; }
+
+  .results-header {
+    background: linear-gradient(135deg, var(--bark) 0%, #4A3028 100%);
+    padding: 60px 24px 80px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .results-header::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    top: -80px; right: -80px;
   }
 
-  .profile-eyebrow {
-    font-family: var(--font-script);
-    font-size: 22px;
-    color: var(--terracotta);
-    font-weight: 600;
-    margin-bottom: 6px;
+  .results-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--rose);
+    margin-bottom: 16px;
   }
 
-  .profile-name {
-    font-family: var(--font-title);
-    font-weight: 700;
-    font-size: clamp(30px, 6vw, 44px);
-    color: var(--ecorce);
+  .results-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 5vw, 40px);
+    margin-bottom: 12px;
     line-height: 1.2;
+  }
+  .results-title em { font-style: italic; color: var(--rose); }
+
+  .results-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .results-body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* RADAR */
+  .radar-wrap {
+    background: white;
+    border-radius: 24px;
+    padding: 40px 24px;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .radar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--bark);
+    margin-bottom: 8px;
+  }
+  .radar-sub {
+    font-size: 13px;
+    color: #B09090;
     margin-bottom: 32px;
   }
 
-  .profile-intro {
-    font-family: var(--font-title);
-    font-size: 21px;
-    font-style: italic;
-    color: var(--terracotta-d);
-    line-height: 1.6;
+  canvas#radar {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* CARDS */
+  .cards-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--bark);
+    margin-bottom: 6px;
+  }
+  .cards-sub {
+    font-size: 14px;
+    color: #9A7A7A;
     margin-bottom: 28px;
+    line-height: 1.6;
   }
 
-  .profile-body p {
-    font-size: 17px;
-    line-height: 1.75;
-    color: var(--ink);
-    margin-bottom: 18px;
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
   }
 
-  .insight-box {
-    background: var(--insight-bg);
-    border-left: 3px solid var(--sauge);
-    border-radius: 4px 18px 18px 4px;
-    padding: 24px 26px;
-    margin: 28px 0;
-  }
-  .insight-label {
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--sauge);
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-  .insight-box p {
-    font-size: 17px;
-    line-height: 1.7;
-    color: var(--ink);
-    margin: 0;
-  }
-
-  .first-step-box {
-    background: var(--terracotta);
+  .dim-card {
+    background: white;
     border-radius: 18px;
-    padding: 30px 28px;
-    margin: 32px 0 8px;
-    text-align: center;
+    padding: 24px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--mist);
+    transition: transform 0.2s;
   }
-  .first-step-label {
+  .dim-card:hover { transform: translateY(-2px); }
+  .dim-card.high { border-left-color: var(--sage-d); }
+  .dim-card.mid  { border-left-color: var(--gold); }
+  .dim-card.low  { border-left-color: var(--rose-d); }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card-icon { font-size: 24px; }
+  .card-name {
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--bark);
+    flex: 1;
+  }
+  .card-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--bark);
+  }
+  .card-score span { font-size: 14px; font-weight: 300; color: #B09090; }
+
+  .score-bar-bg {
+    height: 6px;
+    background: var(--mist);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .score-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 1s ease;
+  }
+  .high .score-bar-fill { background: var(--sage-d); }
+  .mid  .score-bar-fill { background: var(--gold); }
+  .low  .score-bar-fill { background: var(--rose-d); }
+
+  .card-msg {
     font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(253,248,241,0.75);
-    font-weight: 700;
-    margin-bottom: 14px;
-  }
-  .first-step-box p {
-    font-family: var(--font-title);
-    font-size: 21px;
-    font-style: italic;
-    color: var(--cream);
-    line-height: 1.55;
-    margin: 0;
+    color: #9A7A7A;
+    line-height: 1.6;
   }
 
-  .profile-closing {
+  /* MESSAGE FINAL */
+  .message-box {
+    background: linear-gradient(135deg, var(--blush) 0%, #EAF0EE 100%);
+    border-radius: 24px;
+    padding: 40px;
     text-align: center;
-    font-family: var(--font-title);
-    font-size: 19px;
-    font-style: italic;
-    color: var(--terracotta-d);
-    line-height: 1.7;
-    margin: 40px 0 36px;
+    margin-bottom: 40px;
+    border: 1px solid rgba(232,160,160,0.3);
+  }
+  .message-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--bark);
+    margin-bottom: 16px;
+  }
+  .message-box p {
+    font-size: 15px;
+    color: #7A5A5A;
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 28px;
   }
 
   .btn-cta {
-    display: block;
-    width: 100%;
-    background: linear-gradient(135deg, var(--terracotta-d), var(--terracotta));
-    color: var(--cream);
+    background: linear-gradient(135deg, var(--rose-d), var(--bark));
+    color: white;
     border: none;
     border-radius: 100px;
-    padding: 20px 44px;
-    font-size: 17px;
-    font-weight: 700;
+    padding: 18px 44px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 10px 28px rgba(212,97,74,0.3);
+    box-shadow: 0 8px 30px rgba(107,78,61,0.3);
     transition: all 0.3s;
   }
-  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,97,74,0.4); }
-
-  /* ── TRANSITION ── */
-  #transition .results-body { padding-top: 72px; text-align: center; }
-
-  .transition-lede {
-    font-family: var(--font-title);
-    font-weight: 600;
-    font-size: clamp(24px, 4.6vw, 32px);
-    color: var(--ecorce);
-    margin-bottom: 32px;
-    line-height: 1.3;
-  }
-
-  .transition-body p {
-    font-size: 17px;
-    line-height: 1.8;
-    color: var(--ink);
-    margin-bottom: 18px;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .transition-body p.strong {
-    font-family: var(--font-title);
-    color: var(--terracotta-d);
-    font-style: italic;
-  }
-
-  .transition-cta-wrap { margin-top: 40px; }
-
-  .signature {
-    margin-top: 48px;
-    font-family: var(--font-script);
-    font-size: 22px;
-    color: var(--sauge);
-    line-height: 1.5;
-  }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(107,78,61,0.4); }
 
   .restart-btn {
-    display: inline-block;
-    margin: 28px auto 0;
+    display: block;
+    margin: 16px auto 0;
     background: none;
     border: none;
-    font-size: 14px;
-    color: var(--muted);
+    font-size: 13px;
+    color: #B09090;
     cursor: pointer;
     text-decoration: underline;
-    font-family: var(--font-body);
-    font-style: italic;
+    font-family: 'DM Sans', sans-serif;
   }
 
   @media (max-width: 480px) {
-    .option-btn { padding: 18px 20px; font-size: 17px; }
-    .insight-box, .first-step-box { padding: 22px 20px; }
+    .scale-btn { width: 42px; height: 42px; font-size: 13px; }
+    .scale-buttons { gap: 6px; }
   }
 </style>
 </head>
 <body>
 
 <!-- ═══════════════ INTRO ═══════════════ -->
-<section id="intro" class="screen active">
+<section id="intro">
   <p class="eyebrow">✦ Ton bilan personnel</p>
-  <h1 class="title">Quelle place reste-t-il à la femme derrière tout ce que tu portes ?</h1>
-  <p class="intro-line">Tu es une mère, une compagne, une femme sur qui l'on peut compter…</p>
-  <p class="intro-line emphasis">Mais dans la vie que tu vis aujourd'hui, quelle place reste-t-il réellement pour toi ?</p>
-  <p class="intro-line">En moins de 5 minutes, découvre si tu avances encore par choix… ou si tu tiens surtout parce qu'il le faut.</p>
+  <h1 class="title">Où en es-tu <em>vraiment</em> dans ta vie ?</h1>
+  <p class="intro-sub">
+    Un quiz doux et honnête pour faire le point sur 8 dimensions essentielles de ta vie.
+    Pas de bonne ou mauvaise réponse — seulement ta vérité du moment.
+  </p>
   <div class="badge-row">
-    <span class="badge">12 questions</span>
-    <span class="badge">≈ 4 minutes</span>
-    <span class="badge">Sans jugement</span>
+    <span class="badge">⏱ 5 minutes</span>
+    <span class="badge">🌸 8 dimensions</span>
+    <span class="badge">📊 Résultat visuel</span>
+    <span class="badge">💛 Bienveillant</span>
   </div>
-  <p class="intro-disclaimer">Ce quiz n'est pas là pour te juger ni te mettre dans une case. Il t'aide simplement à faire le point, avec honnêteté.</p>
-  <button class="btn-primary" onclick="fbq('track','Lead'); startQuiz()">Je fais le point</button>
+ <button class="btn-primary" onclick="fbq('track', 'Lead'); startQuiz()">Commencer mon état des lieux</button>
+  <p class="note">Pour toi. Rien que pour toi. 🌿</p>
 </section>
 
 <!-- ═══════════════ QUIZ ═══════════════ -->
-<section id="quiz" class="screen">
+<section id="quiz">
   <div class="quiz-header">
-    <button class="back-link" id="btnBack" onclick="prevQuestion()">← précédent</button>
-    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
-    <span class="progress-label" id="progressLabel">Question 1 sur 12</span>
+    <span class="logo-small">Mon État des Lieux</span>
+    <div class="progress-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <span class="progress-label" id="progressLabel">1 / 16</span>
   </div>
-  <div class="quiz-body">
-    <p class="question-text" id="questionText"></p>
-    <div class="options" id="optionsContainer"></div>
-  </div>
-</section>
 
-<!-- ═══════════════ CAPTURE ═══════════════ -->
-<section id="capture" class="screen">
   <div class="quiz-body">
-    <p class="eyebrow" style="text-align:center">✦ Presque terminé</p>
-    <p class="capture-title">Où dois-je t'envoyer ton bilan personnel ?</p>
-    <p class="capture-sub">Ton résultat s'affiche tout de suite ici, et je te l'envoie aussi par e-mail pour que tu puisses y revenir.</p>
-    <form class="capture-form" id="captureForm" onsubmit="return handleCaptureSubmit(event)">
-      <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name" required>
-      <input type="email" id="email" placeholder="Ton e-mail" autocomplete="email" required>
-      <p class="capture-error" id="captureError">Vérifie ton prénom et ton e-mail, ma belle.</p>
-      <button type="submit" class="btn-primary">Je découvre mon bilan</button>
-    </form>
-    <p class="capture-note">Aucun spam. Juste ton bilan, et de quoi t'aider à avancer si tu le souhaites.</p>
+    <div id="slides-container"></div>
+
+    <div class="nav-buttons">
+      <button class="btn-back" id="btnBack" onclick="prevSlide()">← Précédent</button>
+      <button class="btn-next" id="btnNext" onclick="nextSlide()">Suivant →</button>
+    </div>
   </div>
 </section>
 
 <!-- ═══════════════ RÉSULTATS ═══════════════ -->
-<section id="results" class="screen">
-  <div class="results-body">
-    <p class="profile-eyebrow">Ton profil</p>
-    <h2 class="profile-name" id="profileName"></h2>
-    <div class="profile-body" id="profileBody"></div>
-    <button class="btn-cta" onclick="showTransition()">Je veux aller plus loin</button>
+<section id="results">
+  <div class="results-header">
+    <p class="results-eyebrow">✦ Ton portrait de vie</p>
+    <h2 class="results-title">Voici ton <em>état des lieux</em></h2>
+    <p class="results-sub">Ce bilan est une boussole, pas un jugement. Chaque zone est une invitation à te reconnecter à toi-même.</p>
   </div>
-</section>
 
-<!-- ═══════════════ TRANSITION / OFFRE ═══════════════ -->
-<section id="transition" class="screen">
   <div class="results-body">
-    <p class="transition-lede">Ce résultat n'est pas une case.<br>C'est un point de départ.</p>
-    <div class="transition-body">
-      <p>Prendre conscience de l'endroit où tu te trouves est une première étape.</p>
-      <p>Mais savoir que tu t'es oubliée ne suffit pas toujours pour réussir à te retrouver seule.</p>
-      <p class="strong">J'ai moi aussi été cette femme qui assurait, avançait et s'adaptait jusqu'à ne plus savoir ce qu'elle voulait réellement.</p>
-      <p>C'est pour cela que j'ai créé <strong>Alignée</strong> : un accompagnement structuré pour t'aider à mieux te connaître, faire le tri et recommencer à construire une vie choisie consciemment.</p>
-      <p>Pas pour devenir une autre femme.<br>Pour retrouver celle qui s'est effacée en chemin.</p>
+    <div class="radar-wrap">
+      <p class="radar-title">Ta toile de vie</p>
+      <p class="radar-sub">Plus la surface colorée est large, plus tu te sens épanouie dans cette dimension.</p>
+      <canvas id="radar" width="500" height="500"></canvas>
     </div>
-    <div class="transition-cta-wrap">
-      <!-- Vérifie que ce lien pointe bien vers la page de vente Alignée en cours -->
-      <button class="btn-cta" onclick="fbq('track','Contact'); window.location.href='https://www.kanel-alignee.com/4456178c'">Découvrir Alignée</button>
+
+    <p class="cards-title">Tes 8 dimensions en détail</p>
+    <p class="cards-sub">Chaque carte te donne un signal. Les zones en <strong style="color:var(--rose-d)">rouge doux</strong> sont celles à chouchouter en priorité. Celles en <strong style="color:var(--sage-d)">vert sauge</strong> sont tes ressources. 🌿</p>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+
+    <div class="message-box">
+      <h3 id="finalTitle">Tu n'as pas à tout réparer en même temps.</h3>
+      <p id="finalMsg">Ce bilan est ton point de départ, pas ta destination. Choisis une zone, commence doucement, et avance à ton rythme.</p>
+     <button class="btn-cta" onclick="fbq('track', 'Contact'); window.location.href='https://www.kanel-alignee.com/4456178c'">Je veux aller plus loin 🌸</button>
     </div>
-    <p class="signature">Respect non négociable.<br>Sois la meilleure amie de ton âme.</p>
+
     <button class="restart-btn" onclick="restart()">↩ Refaire le quiz</button>
   </div>
 </section>
 
 <script>
-// ─── Config : intégration Systeme.io / e-mail automatique ───
-// Colle ici l'URL d'action de ton formulaire Systeme.io (ou un webhook Zapier relié à Systeme.io).
-// Le prénom, l'e-mail et le profil obtenu seront envoyés en arrière-plan à la soumission du formulaire.
-// Configure ensuite dans Systeme.io une campagne qui envoie le bilan correspondant au tag reçu.
-// Tant que ce champ est vide, le résultat reste affiché immédiatement mais aucun e-mail n'est déclenché automatiquement.
-const LEAD_ENDPOINT = '';
-
-const QUESTIONS = [
+const DIMENSIONS = [
   {
-    q: "Si l'on te demandait aujourd'hui : « Qu'est-ce que tu veux vraiment pour toi ? »",
-    options: [
-      { t: "Je ne saurais pas vraiment quoi répondre.", l: 'A' },
-      { t: "J'ai quelques envies, mais elles passent toujours après le reste.", l: 'B' },
-      { t: "Je recommence à identifier ce que je veux et à lui faire une place.", l: 'C' }
-    ]
+    id: 'identite',
+    name: 'Identité & Sens de soi',
+    icon: '🌸',
+    color: '#E8A0A0',
+    questions: [
+      {
+        q: "Quand tu penses à toi — pas à la maman, pas à l'épouse — qui es-tu ?",
+        hint: "Pense à tes valeurs, tes désirs profonds, ce qui te fait te sentir vivante.",
+        min: "Je ne sais plus qui je suis",
+        max: "Je me connais bien"
+      },
+      {
+        q: "Tu prends des décisions en accord avec ce qui est vraiment important pour toi ?",
+        hint: "Tes choix quotidiens reflètent-ils qui tu es vraiment, ou tu vis pour les autres ?",
+        min: "Pas du tout",
+        max: "Totalement"
+      }
+    ],
+    messages: {
+      low: "Tu t'es un peu perdue en chemin. C'est normal — et retrouver ton fil est possible, pas à pas.",
+      mid: "Tu as encore des zones d'ombre sur toi-même, mais la lumière est là. Tu commences à te reconnecter.",
+      high: "Tu te connais et tu t'honores. C'est une force immense — continue à cultiver cette connaissance de toi."
+    }
   },
   {
-    q: "Quand tu as enfin un moment sans obligation…",
-    options: [
-      { t: "Je suis tellement fatiguée que je ne fais rien ou je scrolle sans même en profiter.", l: 'A' },
-      { t: "J'en profite souvent pour avancer sur ce qui reste à faire.", l: 'B' },
-      { t: "J'arrive parfois à choisir quelque chose qui me fait réellement du bien.", l: 'C' }
-    ]
+    id: 'corps',
+    name: 'Corps & Bien-être',
+    icon: '🌿',
+    color: '#A8C5B5',
+    questions: [
+      {
+        q: "Comment tu te sens dans ton corps au quotidien ?",
+        hint: "Énergie, vitalité, rapport à ton corps physique — pas l'apparence, mais la sensation intérieure.",
+        min: "Épuisée, déconnectée",
+        max: "Bien, en accord"
+      },
+      {
+        q: "Tu prends soin de toi — sommeil, alimentation, mouvement — avec bienveillance ?",
+        hint: "Pas parfaitement, mais avec une attention douce à tes besoins physiques.",
+        min: "Jamais vraiment",
+        max: "Oui, régulièrement"
+      }
+    ],
+    messages: {
+      low: "Ton corps te parle — fatigue, tension, déconnexion. Il a besoin d'attention douce, pas de performance.",
+      mid: "Tu fais des efforts mais ce n'est pas encore un automatisme. Petits rituels, grandes différences.",
+      high: "Tu entends ton corps et tu l'honores. C'est la base de tout le reste — bravo."
+    }
   },
   {
-    q: "Dans ton quotidien, tes besoins sont…",
-    options: [
-      { t: "Presque toujours les derniers sur la liste.", l: 'A' },
-      { t: "Présents dans ma tête, mais rarement prioritaires.", l: 'B' },
-      { t: "De plus en plus considérés dans mes décisions.", l: 'C' }
-    ]
+    id: 'maternite',
+    name: 'Maternité & Lien',
+    icon: '💛',
+    color: '#D4A853',
+    questions: [
+      {
+        q: "Tu te sens épanouie dans ton rôle de maman — ni coupable, ni dépassée ?",
+        hint: "La culpabilité est l'ennemie n°1 des mamans. Honnêteté douce ici.",
+        min: "Beaucoup de culpabilité",
+        max: "Je me sens bien"
+      },
+      {
+        q: "Tu as un lien de qualité avec tes enfants — présence, connexion, joie partagée ?",
+        hint: "Pas la quantité de temps, mais la qualité de ta présence.",
+        min: "Je suis là mais absente",
+        max: "Connexion forte"
+      }
+    ],
+    messages: {
+      low: "La culpabilité t'écrase. Mais être une bonne mère commence par prendre soin de toi. Tu n'es pas seule.",
+      mid: "Tu jonglles. Certains jours mieux que d'autres. C'est humain et c'est déjà beaucoup.",
+      high: "Tu vis la maternité avec joie et présence. Ce lien que tu nourris est un cadeau pour tes enfants."
+    }
   },
   {
-    q: "Lorsque tu dis « oui » à quelqu'un…",
-    options: [
-      { t: "C'est souvent parce que je me sens obligée ou coupable de refuser.", l: 'A' },
-      { t: "Il m'arrive d'accepter alors que je préférerais dire non.", l: 'B' },
-      { t: "Je vérifie davantage si ce « oui » me respecte aussi.", l: 'C' }
-    ]
+    id: 'couple',
+    name: 'Couple & Intimité',
+    icon: '🌺',
+    color: '#D4688A',
+    questions: [
+      {
+        q: "Tu te sens femme — désirée, désirante — au-delà du rôle de mère ?",
+        hint: "Ta féminité, ton intimité, ton désir propre. Un espace souvent oublié.",
+        min: "Complètement invisible",
+        max: "Vivante et connectée"
+      },
+      {
+        q: "La relation avec ton partenaire (ou avec toi-même si solo) te nourrit ?",
+        hint: "Un partenaire qui soutient, ou une solitude choisie et apaisée.",
+        min: "Épuisante ou inexistante",
+        max: "Nourrissante"
+      }
+    ],
+    messages: {
+      low: "Cette dimension est en veille. Il est temps de rallumer doucement la flamme — à deux, ou seule avec toi-même.",
+      mid: "Des hauts et des bas. Tu vois ce qui manque. C'est déjà un pas vers le changement.",
+      high: "Tu entretiens cette dimension avec soin. C'est précieux et ça se voit dans ton équilibre global."
+    }
   },
   {
-    q: "Si tu devais te présenter sans parler de tes enfants, de ton couple ou de ton travail…",
-    options: [
-      { t: "Je serais probablement bloquée.", l: 'A' },
-      { t: "Je trouverais quelques mots, mais l'exercice serait difficile.", l: 'B' },
-      { t: "Je pourrais parler de mes valeurs, de mes envies et de ce qui m'anime.", l: 'C' }
-    ]
+    id: 'social',
+    name: 'Vie Sociale & Amitié',
+    icon: '🤝',
+    color: '#9FB8D8',
+    questions: [
+      {
+        q: "Tu as des relations qui te nourrissent vraiment — échanges profonds, soutien, rires ?",
+        hint: "Pas le nombre de contacts, mais la qualité des liens qui comptent.",
+        min: "Je me sens très seule",
+        max: "Entourée et nourrie"
+      },
+      {
+        q: "Tu oses demander de l'aide ou partager ce que tu vis sans te sentir un fardeau ?",
+        hint: "Beaucoup de mamans portent tout seules. C'est du courage de demander.",
+        min: "Jamais",
+        max: "Facilement"
+      }
+    ],
+    messages: {
+      low: "L'isolement est lourd. Retrouver une communauté, même petite, peut tout changer.",
+      mid: "Tu as des liens, mais ils sont parfois superficiels ou tu n'oses pas te montrer vraiment.",
+      high: "Tu as créé un cercle qui te soutient. Ces liens sont une vraie richesse."
+    }
   },
   {
-    q: "La vie que tu mènes actuellement ressemble-t-elle à celle que tu aurais consciemment choisie ?",
-    options: [
-      { t: "Non. J'ai surtout suivi ce qu'il fallait faire.", l: 'A' },
-      { t: "En partie, mais je me suis adaptée jusqu'à oublier certains de mes choix.", l: 'B' },
-      { t: "Pas complètement, mais je commence à reprendre la main.", l: 'C' }
-    ]
+    id: 'travail',
+    name: 'Travail & Réalisation',
+    icon: '✨',
+    color: '#B09CD4',
+    questions: [
+      {
+        q: "Ton activité professionnelle (ou créative) te donne un sentiment d'accomplissement ?",
+        hint: "Peu importe ce que c'est — travail salarié, freelance, projet personnel, ou maison.",
+        min: "Aucun sens, je subis",
+        max: "Très épanouissant"
+      },
+      {
+        q: "Tu penses à tes propres ambitions et projets — pas seulement ceux de la famille ?",
+        hint: "Tes rêves, tes envies, ce que TU veux construire.",
+        min: "J'ai oublié mes rêves",
+        max: "Je les cultive"
+      }
+    ],
+    messages: {
+      low: "Tu t'es effacée derrière les autres. Tes rêves existent encore — ils attendent juste d'être réveillés.",
+      mid: "Tu sens l'envie mais pas encore les moyens ou la permission. On y travaille.",
+      high: "Tu avances sur ton chemin. Tes ambitions font partie de ta vie. C'est puissant."
+    }
   },
   {
-    q: "Lorsque quelque chose ne te convient plus…",
-    options: [
-      { t: "Je continue parce que je pense ne pas avoir le choix.", l: 'A' },
-      { t: "J'y pense beaucoup, mais j'ai du mal à agir.", l: 'B' },
-      { t: "Je commence à poser des limites ou à envisager des changements concrets.", l: 'C' }
-    ]
+    id: 'espace',
+    name: 'Espace & Ressourcement',
+    icon: '🍃',
+    color: '#7AAF97',
+    questions: [
+      {
+        q: "Tu as des moments rien que pour toi — sans rôle à jouer, sans rien à produire ?",
+        hint: "Ces moments de pause où tu existes juste pour toi.",
+        min: "Jamais, c'est luxe",
+        max: "Oui, régulièrement"
+      },
+      {
+        q: "Tu as un ou des endroits (physiques ou mentaux) où tu te ressources vraiment ?",
+        hint: "Un coin de maison, la nature, la lecture, la musique... un espace à toi.",
+        min: "Je n'ai rien à moi",
+        max: "J'ai mon espace"
+      }
+    ],
+    messages: {
+      low: "Tu n'as pas de bulle à toi. Se ressourcer n'est pas égoïste — c'est essentiel pour tenir.",
+      mid: "Tu commences à comprendre l'importance de ces pauses. Maintenant les rendre régulières.",
+      high: "Tu sais te ressourcer. C'est une compétence rare et précieuse — garde-la précieusement."
+    }
   },
   {
-    q: "Quelle phrase ressemble le plus à ton quotidien ?",
-    options: [
-      { t: "« Je dois tenir, même quand je n'en peux plus. »", l: 'A' },
-      { t: "« Je sais que quelque chose doit changer, mais je ne sais pas par où commencer. »", l: 'B' },
-      { t: "« Je ne veux plus seulement tenir. Je veux recommencer à vivre. »", l: 'C' }
-    ]
-  },
-  {
-    q: "Quand ton corps te signale qu'il est fatigué…",
-    options: [
-      { t: "Je continue jusqu'à ne plus pouvoir avancer.", l: 'A' },
-      { t: "Je ralentis un peu, tout en culpabilisant.", l: 'B' },
-      { t: "J'apprends à l'écouter avant d'atteindre ma limite.", l: 'C' }
-    ]
-  },
-  {
-    q: "Dans ton couple ou ta famille, tu as parfois l'impression que…",
-    options: [
-      { t: "Tout repose sur toi et que tu n'as pas le droit de lâcher.", l: 'A' },
-      { t: "Tu portes beaucoup, mais tu ne sais pas comment redistribuer cette charge.", l: 'B' },
-      { t: "Tu commences à exprimer ce dont tu as besoin et ce que tu ne veux plus porter seule.", l: 'C' }
-    ]
-  },
-  {
-    q: "Face aux attentes de la famille, de ton entourage ou de la société…",
-    options: [
-      { t: "Je fais ce qui est attendu, même lorsque cela ne me ressemble pas.", l: 'A' },
-      { t: "Je ressens le décalage, mais le regard des autres m'influence encore beaucoup.", l: 'B' },
-      { t: "Je commence à distinguer leurs attentes de mes propres choix.", l: 'C' }
-    ]
-  },
-  {
-    q: "Aujourd'hui, où en es-tu intérieurement ?",
-    options: [
-      { t: "Je suis épuisée et je fonctionne essentiellement en mode survie.", l: 'A' },
-      { t: "Je sens que je me suis perdue, mais je ne sais pas encore comment revenir à moi.", l: 'B' },
-      { t: "Je suis prête à faire le tri et à choisir davantage la vie que je veux construire.", l: 'C' }
-    ]
+    id: 'spirituel',
+    name: 'Sens & Alignement',
+    icon: '🌙',
+    color: '#C5A8D4',
+    questions: [
+      {
+        q: "Ta vie a un sens, une direction — tu sais (en gros) vers quoi tu veux aller ?",
+        hint: "Pas besoin d'un plan parfait. Juste une étoile du nord, une intuition.",
+        min: "Je suis complètement perdue",
+        max: "J'ai une direction claire"
+      },
+      {
+        q: "Tu te sens alignée — ce que tu fais ressemble à qui tu es vraiment ?",
+        hint: "La cohérence entre tes valeurs et ta vie quotidienne.",
+        min: "Grande dissonance",
+        max: "Bien alignée"
+      }
+    ],
+    messages: {
+      low: "Tu cherches ta boussole. Ce sentiment de vide est le signal qu'une reconnexion à toi-même s'impose.",
+      mid: "Tu as des intuitions mais encore du brouillard. La clarté vient en marchant, pas en attendant.",
+      high: "Tu vis en accord avec toi-même. C'est l'alignement le plus précieux qui soit."
+    }
   }
 ];
 
-const PROFILES = {
-  A: {
-    name: 'La Femme Pilier',
-    html: `
-      <p class="profile-intro">Tu portes tellement que tu as fini par disparaître derrière ce que tu assures.</p>
-      <p>Tu es celle sur qui l'on compte.</p>
-      <p>Tu anticipes, tu organises, tu réponds présente. Tu continues même lorsque tu es fatiguée, contrariée ou malade, parce que tu as l'impression que tout risque de s'arrêter si tu lâches.</p>
-      <p>De l'extérieur, tu sembles forte.<br>Mais à l'intérieur, tu fonctionnes surtout en mode survie.</p>
-      <p>Tes besoins passent après ceux de tes enfants, de ton couple, de ta famille et de toutes les responsabilités que tu dois gérer. Tu sais parfaitement ce que les autres attendent de toi. Tu sais moins ce que toi, tu veux encore.</p>
-      <div class="insight-box">
-        <p class="insight-label">Ton piège actuel</p>
-        <p>Confondre ta valeur avec tout ce que tu es capable de porter.</p>
-        <p style="margin-top:12px">Tu n'as pas besoin de devenir encore plus forte. Tu as besoin de ne plus être forte par défaut.</p>
-      </div>
-      <div class="insight-box">
-        <p class="insight-label">Ta force</p>
-        <p>Tu es profondément engagée, fiable et capable. Cette force n'a pas à disparaître : elle doit aussi commencer à te protéger.</p>
-      </div>
-      <div class="first-step-box">
-        <p class="first-step-label">Ton premier pas</p>
-        <p>« Qu'est-ce que je continue à porter uniquement parce que j'ai peur de décevoir ? »</p>
-      </div>
-      <p class="profile-closing">Tenir n'est pas vivre.<br>Il est temps de retrouver la femme derrière le pilier.</p>
-    `
-  },
-  B: {
-    name: 'La Femme en Veille',
-    html: `
-      <p class="profile-intro">Tu sens que quelque chose ne te convient plus, mais tu ne sais pas encore comment le changer.</p>
-      <p>Tu avances, tu assumes et tu fais ce qu'il faut.</p>
-      <p>Pourtant, une partie de toi sait que cette vie ne te ressemble plus complètement.</p>
-      <p>Tu ressens un décalage entre la femme que tu es devenue et celle que tu voudrais être. Tu penses au changement, tu imagines parfois une autre manière de vivre, puis les obligations reprennent leur place.</p>
-      <p>Tu n'es plus totalement dans l'inconscience.<br>Mais tu n'es pas encore passée du constat au choix.</p>
-      <div class="insight-box">
-        <p class="insight-label">Ton piège actuel</p>
-        <p>Attendre d'avoir plus de temps, moins de responsabilités ou l'autorisation des autres pour commencer à penser à toi.</p>
-        <p style="margin-top:12px">À force d'attendre le bon moment, tu risques de rester encore longtemps dans une vie qui ne te nourrit plus.</p>
-      </div>
-      <div class="insight-box">
-        <p class="insight-label">Ta force</p>
-        <p>Ta prise de conscience a déjà commencé. Tu ne peux plus complètement ignorer ce que tu ressens, et c'est justement là que le changement devient possible.</p>
-      </div>
-      <div class="first-step-box">
-        <p class="first-step-label">Ton premier pas</p>
-        <p>« Si je cessais de me demander ce que je dois faire, qu'est-ce que je choisirais ? »</p>
-      </div>
-      <p class="profile-closing">Tu n'as pas besoin d'avoir toutes les réponses.<br>Tu as seulement besoin de faire un premier pas vers toi.</p>
-    `
-  },
-  C: {
-    name: 'La Femme au Tournant',
-    html: `
-      <p class="profile-intro">Tu ne veux plus seulement t'adapter à ta vie. Tu veux recommencer à la choisir.</p>
-      <p>Tu as compris que continuer comme avant te coûterait trop cher intérieurement.</p>
-      <p>Tu observes davantage tes besoins, tes limites et les situations qui ne te correspondent plus. Tu commences peut-être à dire non, à faire du tri ou à remettre certains choix en question.</p>
-      <p>Tu n'as pas encore tout transformé.<br>Mais la femme en toi ne veut plus retourner dans l'ombre.</p>
-      <div class="insight-box">
-        <p class="insight-label">Ton piège actuel</p>
-        <p>Multiplier les prises de conscience sans les transformer en décisions concrètes.</p>
-        <p style="margin-top:12px">Comprendre ce qui ne va plus est essentiel. Mais pour que ta vie change, tes choix doivent peu à peu s'aligner avec ce que tu as compris.</p>
-      </div>
-      <div class="insight-box">
-        <p class="insight-label">Ta force</p>
-        <p>Tu es prête à reprendre ta place sans renier la mère, la compagne ou la femme engagée que tu es.</p>
-        <p style="margin-top:12px">Il ne s'agit pas de tout quitter.<br>Il s'agit de ne plus te quitter toi-même.</p>
-      </div>
-      <div class="first-step-box">
-        <p class="first-step-label">Ton premier pas</p>
-        <p>« Quel choix concret pourrait mieux me respecter cette semaine ? »</p>
-      </div>
-      <p class="profile-closing">Tu es arrivée à un tournant.<br>Il est temps de faire le tri, de choisir et de te remettre en mouvement.</p>
-    `
-  }
-};
+let currentSlide = 0;
+let answers = {};
+let totalQuestions = 0;
 
-let currentQ = 0;
-let answers = [];
-let computedProfile = null;
-
-function startQuiz() {
-  currentQ = 0;
-  answers = [];
-  renderQuestion();
-  showScreen('quiz');
-}
-
-function renderQuestion() {
-  const data = QUESTIONS[currentQ];
-  document.getElementById('questionText').textContent = data.q;
-
-  const container = document.getElementById('optionsContainer');
+function buildSlides() {
+  const container = document.getElementById('slides-container');
   container.innerHTML = '';
-  data.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.textContent = opt.t;
-    if (answers[currentQ] === opt.l) btn.classList.add('selected');
-    btn.onclick = () => selectOption(opt.l, btn);
-    container.appendChild(btn);
+  let slideIndex = 0;
+  totalQuestions = 0;
+
+  DIMENSIONS.forEach((dim, dIdx) => {
+    dim.questions.forEach((q, qIdx) => {
+      const key = `${dim.id}_${qIdx}`;
+      const slide = document.createElement('div');
+      slide.className = 'slide' + (slideIndex === 0 ? ' active' : '');
+      slide.dataset.key = key;
+
+      let btns = '';
+      for (let v = 1; v <= 10; v++) {
+        btns += `<button class="scale-btn" data-value="${v}" data-key="${key}" onclick="selectAnswer('${key}', ${v}, this)">${v}</button>`;
+      }
+
+      slide.innerHTML = `
+        <div class="dimension-tag"><span class="dim-dot" style="background:${dim.color}"></span>${dim.name}</div>
+        <p class="question-num">Question ${slideIndex + 1} sur ${getTotalQ()}</p>
+        <p class="question-text">${q.q}</p>
+        <p class="question-hint">${q.hint}</p>
+        <div class="scale-container">
+          <div class="scale-labels"><span>1 – ${q.min}</span><span>10 – ${q.max}</span></div>
+          <div class="scale-buttons">${btns}</div>
+          <div class="emoji-row"><span>😔</span><span>😐</span><span>🙂</span><span>😊</span><span>🌟</span></div>
+        </div>
+      `;
+      container.appendChild(slide);
+      slideIndex++;
+      totalQuestions++;
+    });
   });
 
-  document.getElementById('progressLabel').textContent = `Question ${currentQ + 1} sur ${QUESTIONS.length}`;
-  document.getElementById('progressBar').style.width = `${((currentQ) / QUESTIONS.length) * 100}%`;
-  const backBtn = document.getElementById('btnBack');
-  backBtn.classList.toggle('visible', currentQ > 0);
-  window.scrollTo(0, 0);
+  // Fix question nums
+  document.querySelectorAll('.question-num').forEach((el, i) => {
+    el.textContent = `Question ${i + 1} sur ${totalQuestions}`;
+  });
 }
 
-function selectOption(letter, btn) {
-  answers[currentQ] = letter;
-  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+function getTotalQ() {
+  return DIMENSIONS.reduce((s, d) => s + d.questions.length, 0);
+}
+
+function selectAnswer(key, value, btn) {
+  answers[key] = value;
+  btn.closest('.scale-buttons').querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
-  document.getElementById('progressBar').style.width = `${((currentQ + 1) / QUESTIONS.length) * 100}%`;
-
-  setTimeout(() => {
-    if (currentQ < QUESTIONS.length - 1) {
-      currentQ++;
-      renderQuestion();
-    } else {
-      showScreen('capture');
-    }
-  }, 350);
+  document.getElementById('btnNext').classList.add('active');
 }
 
-function prevQuestion() {
-  if (currentQ === 0) return;
-  currentQ--;
-  renderQuestion();
+function getSlides() { return document.querySelectorAll('.slide'); }
+
+function updateProgress() {
+  const slides = getSlides();
+  const pct = ((currentSlide + 1) / slides.length) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${currentSlide + 1} / ${slides.length}`;
+  document.getElementById('btnBack').style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
 }
 
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function nextSlide() {
+  const slides = getSlides();
+  const key = slides[currentSlide].dataset.key;
+  if (!answers[key]) return;
+
+  slides[currentSlide].classList.remove('active');
+  currentSlide++;
+
+  if (currentSlide >= slides.length) {
+    showResults();
+    return;
+  }
+
+  slides[currentSlide].classList.add('active');
+
+  const nextKey = slides[currentSlide].dataset.key;
+  const btn = document.getElementById('btnNext');
+  btn.classList.toggle('active', !!answers[nextKey]);
+
+  if (currentSlide === slides.length - 1) {
+    btn.textContent = 'Voir mes résultats ✨';
+  } else {
+    btn.textContent = 'Suivant →';
+  }
+
+  updateProgress();
   window.scrollTo(0, 0);
 }
 
-function computeProfile() {
-  const counts = { A: 0, B: 0, C: 0 };
-  answers.forEach(l => counts[l]++);
-  const max = Math.max(counts.A, counts.B, counts.C);
-  const winners = Object.keys(counts).filter(l => counts[l] === max);
-  if (winners.length === 1) return winners[0];
-  return answers[QUESTIONS.length - 1];
+function prevSlide() {
+  if (currentSlide === 0) return;
+  const slides = getSlides();
+  slides[currentSlide].classList.remove('active');
+  currentSlide--;
+  slides[currentSlide].classList.add('active');
+  document.getElementById('btnNext').classList.add('active');
+  document.getElementById('btnNext').textContent = currentSlide === slides.length - 2 ? 'Voir mes résultats ✨' : 'Suivant →';
+  updateProgress();
+  window.scrollTo(0, 0);
 }
 
-function handleCaptureSubmit(event) {
-  event.preventDefault();
-  const firstName = document.getElementById('firstName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  const errorEl = document.getElementById('captureError');
-
-  if (!firstName || !emailValid) {
-    errorEl.classList.add('visible');
-    return false;
-  }
-  errorEl.classList.remove('visible');
-
-  computedProfile = computeProfile();
-  fbq('track', 'CompleteRegistration');
-  submitLead(firstName, email, computedProfile);
-  showResults(computedProfile);
-  return false;
+function startQuiz() {
+  buildSlides();
+  document.getElementById('intro').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  updateProgress();
 }
 
-function submitLead(firstName, email, profileLetter) {
-  if (!LEAD_ENDPOINT) return;
-  try {
-    const body = new URLSearchParams({
-      prenom: firstName,
-      email: email,
-      profil: PROFILES[profileLetter].name
+function computeScores() {
+  return DIMENSIONS.map(dim => {
+    let total = 0;
+    dim.questions.forEach((q, i) => {
+      const key = `${dim.id}_${i}`;
+      total += (answers[key] || 0);
     });
-    fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', body });
-  } catch (e) { /* on n'interrompt jamais l'affichage du résultat */ }
+    const avg = total / dim.questions.length;
+    return { ...dim, score: avg };
+  });
 }
 
-function showResults(letter) {
-  const profile = PROFILES[letter];
-  document.getElementById('profileName').textContent = profile.name;
-  document.getElementById('profileBody').innerHTML = profile.html;
-  showScreen('results');
-  fbq('trackCustom', 'QuizTermine');
+function showResults() {
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  window.scrollTo(0, 0);
+
+  const scores = computeScores();
+  drawRadar(scores);
+  buildCards(scores);
+  buildFinalMessage(scores); fbq('trackCustom', 'QuizTermine');
 }
 
-function showTransition() {
-  showScreen('transition');
+function drawRadar(scores) {
+  const canvas = document.getElementById('radar');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const cx = W / 2, cy = H / 2;
+  const R = Math.min(W, H) / 2 - 60;
+  const N = scores.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const angleStep = (Math.PI * 2) / N;
+  const startAngle = -Math.PI / 2;
+
+  // Grille
+  for (let level = 2; level <= 10; level += 2) {
+    const r = (level / 10) * R;
+    ctx.beginPath();
+    for (let i = 0; i < N; i++) {
+      const a = startAngle + i * angleStep;
+      const x = cx + r * Math.cos(a);
+      const y = cy + r * Math.sin(a);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(107,78,61,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    if (level === 10 || level === 6 || level === 2) {
+      ctx.fillStyle = 'rgba(107,78,61,0.3)';
+      ctx.font = '11px DM Sans';
+      ctx.fillText(level, cx + r + 4, cy + 4);
+    }
+  }
+
+  // Axes
+  for (let i = 0; i < N; i++) {
+    const a = startAngle + i * angleStep;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
+    ctx.strokeStyle = 'rgba(107,78,61,0.1)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  // Zone remplie
+  ctx.beginPath();
+  scores.forEach((s, i) => {
+    const a = startAngle + i * angleStep;
+    const r = (s.score / 10) * R;
+    const x = cx + r * Math.cos(a);
+    const y = cy + r * Math.sin(a);
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(232,160,160,0.25)';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(201,112,112,0.8)';
+  ctx.lineWidth = 2.5;
+  ctx.stroke();
+
+  // Points
+  scores.forEach((s, i) => {
+    const a = startAngle + i * angleStep;
+    const r = (s.score / 10) * R;
+    const x = cx + r * Math.cos(a);
+    const y = cy + r * Math.sin(a);
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = s.color;
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  });
+
+  // Labels
+  scores.forEach((s, i) => {
+    const a = startAngle + i * angleStep;
+    const labelR = R + 40;
+    const x = cx + labelR * Math.cos(a);
+    const y = cy + labelR * Math.sin(a);
+    ctx.fillStyle = '#6B4E3D';
+    ctx.font = '13px DM Sans';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    // Icon above text
+    ctx.font = '18px serif';
+    ctx.fillText(s.icon, x, y - 10);
+    ctx.font = '11px DM Sans';
+    ctx.fillStyle = '#9A7A7A';
+    const shortName = s.name.split(' & ')[0];
+    ctx.fillText(shortName, x, y + 8);
+    ctx.fillStyle = '#6B4E3D';
+    ctx.font = 'bold 12px DM Sans';
+    ctx.fillText(s.score.toFixed(1), x, y + 22);
+  });
+}
+
+function buildCards(scores) {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = '';
+  const sorted = [...scores].sort((a, b) => a.score - b.score);
+
+  sorted.forEach(s => {
+    const level = s.score < 4 ? 'low' : s.score < 7 ? 'mid' : 'high';
+    const msg = s.messages[level];
+    const pct = (s.score / 10) * 100;
+
+    const card = document.createElement('div');
+    card.className = `dim-card ${level}`;
+    card.innerHTML = `
+      <div class="card-top">
+        <span class="card-icon">${s.icon}</span>
+        <span class="card-name">${s.name}</span>
+        <span class="card-score">${s.score.toFixed(1)}<span>/10</span></span>
+      </div>
+      <div class="score-bar-bg">
+        <div class="score-bar-fill" style="width:0%" data-pct="${pct}"></div>
+      </div>
+      <p class="card-msg">${msg}</p>
+    `;
+    grid.appendChild(card);
+  });
+
+  // Animate bars
+  setTimeout(() => {
+    document.querySelectorAll('.score-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }, 200);
+}
+
+function buildFinalMessage(scores) {
+  const avg = scores.reduce((s, d) => s + d.score, 0) / scores.length;
+  const lowest = scores.sort((a, b) => a.score - b.score)[0];
+
+  let title, msg;
+  if (avg < 4) {
+    title = "Tu portes beaucoup. Trop, peut-être.";
+    msg = `Ton état des lieux montre une fatigue profonde dans plusieurs dimensions. Ce n'est pas une fatalité — c'est un appel à te recentrer sur toi. Commence par la dimension <strong>"${lowest.name}"</strong> : c'est là que tout peut commencer à changer.`;
+  } else if (avg < 6.5) {
+    title = "Tu avances, mais tu te perds parfois en chemin.";
+    msg = `Tu as des ressources, mais certaines zones réclament ton attention. La dimension <strong>"${lowest.name}"</strong> mérite d'être ta priorité. Un petit pas dans la bonne direction peut tout déplacer.`;
+  } else {
+    title = "Tu es sur ton chemin. Continue.";
+    msg = `Ton bilan montre une femme qui se connaît et prend soin d'elle. Il reste des zones à cultiver — notamment <strong>"${lowest.name}"</strong> — mais tu as les bases. Construis sur ces fondations.`;
+  }
+
+  document.getElementById('finalTitle').textContent = title;
+  document.getElementById('finalMsg').innerHTML = msg;
 }
 
 function restart() {
-  currentQ = 0;
-  answers = [];
-  computedProfile = null;
-  document.getElementById('captureForm').reset();
-  document.getElementById('captureError').classList.remove('visible');
-  showScreen('intro');
+  answers = {};
+  currentSlide = 0;
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('intro').style.display = 'flex';
+  window.scrollTo(0, 0);
 }
 </script>
 </body>

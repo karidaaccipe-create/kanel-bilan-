@@ -6,7 +6,7 @@
 <title>Quelle place reste-t-il à la femme derrière tout ce que tu portes ? · Kanel Alignée</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -27,16 +27,20 @@ fbq('track', 'PageView');
 <!-- End Meta Pixel Code -->
 <style>
   :root {
-    --cream:      #FDF8F1;
-    --cream-deep: #F7EFE3;
-    --prune:      #431B3E;
-    --prune-d:    #5B2A54;
-    --prune-soft: rgba(67,27,62,0.08);
-    --parme:      #EFE1F3;
-    --parme-line: #DCC4E4;
-    --gold:       #B4872A;
-    --ink:        #2E1E2B;
-    --muted:      #8B7488;
+    --cream:       #FDF8F3;
+    --cream-deep:  #F5EADE;
+    --terracotta:  #D4614A;
+    --terracotta-d:#B84E3B;
+    --sauge:       #5A9B78;
+    --miel:        #D4A853;
+    --ecorce:      #5C3D2E;
+    --insight-bg:  #F7E9DF;
+    --insight-line:#E7C9A8;
+    --ink:         #5C3D2E;
+    --muted:       #9C8172;
+    --font-title:  'Playfair Display', serif;
+    --font-body:   'Lato', sans-serif;
+    --font-script: 'Caveat', cursive;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,11 +48,11 @@ fbq('track', 'PageView');
   html { -webkit-text-size-adjust: 100%; }
 
   body {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     background: var(--cream);
     color: var(--ink);
     min-height: 100vh;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
   .screen { display: none; min-height: 100vh; }
@@ -61,13 +65,12 @@ fbq('track', 'PageView');
   button { font-family: inherit; }
 
   .eyebrow {
-    font-size: 14px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-style: italic;
-    font-weight: 500;
-    margin-bottom: 22px;
+    font-family: var(--font-script);
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 18px;
   }
 
   /* ── INTRO ── */
@@ -81,22 +84,23 @@ fbq('track', 'PageView');
     padding: 64px 24px;
     text-align: center;
     background:
-      radial-gradient(circle at 15% 10%, rgba(67,27,62,0.06) 0%, transparent 45%),
-      radial-gradient(circle at 85% 90%, rgba(180,135,42,0.08) 0%, transparent 45%),
+      radial-gradient(circle at 15% 10%, rgba(212,97,74,0.07) 0%, transparent 45%),
+      radial-gradient(circle at 85% 90%, rgba(90,155,120,0.10) 0%, transparent 45%),
       var(--cream);
   }
 
   h1.title {
+    font-family: var(--font-title);
     font-weight: 600;
     font-size: clamp(30px, 6.4vw, 50px);
     line-height: 1.2;
-    color: var(--prune);
+    color: var(--ecorce);
     max-width: 640px;
     margin-bottom: 28px;
   }
 
   .intro-line {
-    font-size: clamp(17px, 2.6vw, 20px);
+    font-size: clamp(17px, 2.4vw, 19px);
     line-height: 1.7;
     color: var(--ink);
     max-width: 520px;
@@ -104,8 +108,10 @@ fbq('track', 'PageView');
   }
 
   .intro-line.emphasis {
+    font-family: var(--font-title);
     font-style: italic;
-    color: var(--prune-d);
+    font-size: clamp(19px, 2.8vw, 22px);
+    color: var(--terracotta-d);
   }
 
   .intro-disclaimer {
@@ -123,29 +129,30 @@ fbq('track', 'PageView');
     margin-bottom: 36px;
   }
   .badge {
-    background: var(--parme);
-    border: 1px solid var(--parme-line);
+    background: var(--cream-deep);
+    border: 1px solid var(--insight-line);
     border-radius: 100px;
     padding: 8px 20px;
-    font-size: 15px;
-    color: var(--prune-d);
-    font-style: italic;
+    font-size: 14px;
+    color: var(--ecorce);
+    font-weight: 700;
+    letter-spacing: 0.3px;
   }
 
   .btn-primary {
-    background: var(--prune);
+    background: var(--terracotta);
     color: var(--cream);
     border: none;
     border-radius: 100px;
     padding: 20px 48px;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 700;
     cursor: pointer;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 28px rgba(67,27,62,0.28);
+    box-shadow: 0 10px 28px rgba(212,97,74,0.3);
   }
-  .btn-primary:hover { background: var(--prune-d); transform: translateY(-2px); }
+  .btn-primary:hover { background: var(--terracotta-d); transform: translateY(-2px); }
 
   /* ── QUIZ ── */
   .quiz-header {
@@ -175,19 +182,19 @@ fbq('track', 'PageView');
   .progress-wrap {
     flex: 1;
     height: 5px;
-    background: var(--parme);
+    background: var(--cream-deep);
     border-radius: 4px;
     overflow: hidden;
   }
   .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--gold), var(--prune));
+    background: linear-gradient(90deg, var(--miel), var(--terracotta));
     border-radius: 4px;
     transition: width 0.5s ease;
     width: 0%;
   }
   .progress-label {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--muted);
     font-style: italic;
     white-space: nowrap;
@@ -200,10 +207,11 @@ fbq('track', 'PageView');
   }
 
   .question-text {
+    font-family: var(--font-title);
     font-weight: 600;
     font-size: clamp(23px, 4vw, 30px);
     line-height: 1.35;
-    color: var(--prune);
+    color: var(--ecorce);
     margin-bottom: 36px;
   }
 
@@ -212,20 +220,20 @@ fbq('track', 'PageView');
   .option-btn {
     text-align: left;
     background: white;
-    border: 1.5px solid var(--parme-line);
+    border: 1.5px solid var(--insight-line);
     border-radius: 18px;
     padding: 20px 24px;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.5;
     color: var(--ink);
     cursor: pointer;
     transition: all 0.2s ease;
     min-height: 64px;
   }
-  .option-btn:hover { border-color: var(--gold); background: var(--parme); }
+  .option-btn:hover { border-color: var(--sauge); background: var(--cream-deep); }
   .option-btn.selected {
-    background: var(--prune);
-    border-color: var(--prune);
+    background: var(--terracotta);
+    border-color: var(--terracotta);
     color: var(--cream);
   }
 
@@ -239,15 +247,16 @@ fbq('track', 'PageView');
   }
 
   .capture-title {
+    font-family: var(--font-title);
     font-weight: 600;
     font-size: clamp(24px, 4.4vw, 32px);
-    color: var(--prune);
+    color: var(--ecorce);
     max-width: 460px;
     margin-bottom: 14px;
   }
 
   .capture-sub {
-    font-size: 17px;
+    font-size: 16px;
     color: var(--muted);
     font-style: italic;
     max-width: 420px;
@@ -264,17 +273,17 @@ fbq('track', 'PageView');
 
   .capture-form input {
     width: 100%;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-family: var(--font-body);
+    font-size: 17px;
     padding: 18px 22px;
     border-radius: 100px;
-    border: 1.5px solid var(--parme-line);
+    border: 1.5px solid var(--insight-line);
     background: white;
     color: var(--ink);
   }
   .capture-form input:focus {
     outline: none;
-    border-color: var(--prune);
+    border-color: var(--terracotta);
   }
 
   .capture-error {
@@ -301,75 +310,77 @@ fbq('track', 'PageView');
   }
 
   .profile-eyebrow {
-    font-size: 15px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-style: italic;
-    margin-bottom: 10px;
+    font-family: var(--font-script);
+    font-size: 22px;
+    color: var(--terracotta);
+    font-weight: 600;
+    margin-bottom: 6px;
   }
 
   .profile-name {
+    font-family: var(--font-title);
     font-weight: 700;
     font-size: clamp(30px, 6vw, 44px);
-    color: var(--prune);
+    color: var(--ecorce);
     line-height: 1.2;
     margin-bottom: 32px;
   }
 
   .profile-intro {
-    font-size: 20px;
+    font-family: var(--font-title);
+    font-size: 21px;
     font-style: italic;
-    color: var(--prune-d);
+    color: var(--terracotta-d);
     line-height: 1.6;
     margin-bottom: 28px;
   }
 
   .profile-body p {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.75;
     color: var(--ink);
     margin-bottom: 18px;
   }
 
   .insight-box {
-    background: var(--parme);
-    border-left: 3px solid var(--gold);
+    background: var(--insight-bg);
+    border-left: 3px solid var(--sauge);
     border-radius: 4px 18px 18px 4px;
     padding: 24px 26px;
     margin: 28px 0;
   }
   .insight-label {
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
+    color: var(--sauge);
+    font-weight: 700;
     margin-bottom: 10px;
   }
   .insight-box p {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.7;
     color: var(--ink);
     margin: 0;
   }
 
   .first-step-box {
-    background: var(--prune);
+    background: var(--terracotta);
     border-radius: 18px;
     padding: 30px 28px;
     margin: 32px 0 8px;
     text-align: center;
   }
   .first-step-label {
-    font-size: 14px;
+    font-size: 13px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(253,248,241,0.65);
-    font-weight: 600;
+    color: rgba(253,248,241,0.75);
+    font-weight: 700;
     margin-bottom: 14px;
   }
   .first-step-box p {
+    font-family: var(--font-title);
     font-size: 21px;
     font-style: italic;
     color: var(--cream);
@@ -379,9 +390,10 @@ fbq('track', 'PageView');
 
   .profile-closing {
     text-align: center;
+    font-family: var(--font-title);
     font-size: 19px;
     font-style: italic;
-    color: var(--prune-d);
+    color: var(--terracotta-d);
     line-height: 1.7;
     margin: 40px 0 36px;
   }
@@ -389,32 +401,33 @@ fbq('track', 'PageView');
   .btn-cta {
     display: block;
     width: 100%;
-    background: linear-gradient(135deg, var(--prune-d), var(--prune));
+    background: linear-gradient(135deg, var(--terracotta-d), var(--terracotta));
     color: var(--cream);
     border: none;
     border-radius: 100px;
     padding: 20px 44px;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 17px;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 10px 28px rgba(67,27,62,0.28);
+    box-shadow: 0 10px 28px rgba(212,97,74,0.3);
     transition: all 0.3s;
   }
-  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(67,27,62,0.36); }
+  .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(212,97,74,0.4); }
 
   /* ── TRANSITION ── */
   #transition .results-body { padding-top: 72px; text-align: center; }
 
   .transition-lede {
+    font-family: var(--font-title);
     font-weight: 600;
     font-size: clamp(24px, 4.6vw, 32px);
-    color: var(--prune);
+    color: var(--ecorce);
     margin-bottom: 32px;
     line-height: 1.3;
   }
 
   .transition-body p {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.8;
     color: var(--ink);
     margin-bottom: 18px;
@@ -424,7 +437,8 @@ fbq('track', 'PageView');
   }
 
   .transition-body p.strong {
-    color: var(--prune-d);
+    font-family: var(--font-title);
+    color: var(--terracotta-d);
     font-style: italic;
   }
 
@@ -432,10 +446,10 @@ fbq('track', 'PageView');
 
   .signature {
     margin-top: 48px;
-    font-size: 16px;
-    font-style: italic;
-    color: var(--gold);
-    line-height: 1.8;
+    font-family: var(--font-script);
+    font-size: 22px;
+    color: var(--sauge);
+    line-height: 1.5;
   }
 
   .restart-btn {
@@ -447,7 +461,7 @@ fbq('track', 'PageView');
     color: var(--muted);
     cursor: pointer;
     text-decoration: underline;
-    font-family: 'Cormorant Garamond', serif;
+    font-family: var(--font-body);
     font-style: italic;
   }
 

@@ -237,71 +237,6 @@ fbq('track', 'PageView');
     color: var(--cream);
   }
 
-  /* ── CAPTURE ── */
-  #capture .quiz-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-top: 56px;
-  }
-
-  .capture-title {
-    font-family: var(--font-title);
-    font-weight: 600;
-    font-size: clamp(24px, 4.4vw, 32px);
-    color: var(--ecorce);
-    max-width: 460px;
-    margin-bottom: 14px;
-  }
-
-  .capture-sub {
-    font-size: 16px;
-    color: var(--muted);
-    font-style: italic;
-    max-width: 420px;
-    margin-bottom: 36px;
-  }
-
-  .capture-form {
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .capture-form input {
-    width: 100%;
-    font-family: var(--font-body);
-    font-size: 17px;
-    padding: 18px 22px;
-    border-radius: 100px;
-    border: 1.5px solid var(--insight-line);
-    background: white;
-    color: var(--ink);
-  }
-  .capture-form input:focus {
-    outline: none;
-    border-color: var(--terracotta);
-  }
-
-  .capture-error {
-    color: #A5433A;
-    font-size: 15px;
-    font-style: italic;
-    display: none;
-  }
-  .capture-error.visible { display: block; }
-
-  .capture-note {
-    font-size: 14px;
-    color: var(--muted);
-    font-style: italic;
-    margin-top: 18px;
-    max-width: 380px;
-  }
-
   /* ── RESULTS ── */
   .results-body {
     max-width: 620px;
@@ -499,22 +434,6 @@ fbq('track', 'PageView');
   <div class="quiz-body">
     <p class="question-text" id="questionText"></p>
     <div class="options" id="optionsContainer"></div>
-  </div>
-</section>
-
-<!-- ═══════════════ CAPTURE ═══════════════ -->
-<section id="capture" class="screen">
-  <div class="quiz-body">
-    <p class="eyebrow" style="text-align:center">✦ Presque terminé</p>
-    <p class="capture-title">Où dois-je t'envoyer ton bilan personnel ?</p>
-    <p class="capture-sub">Ton résultat s'affiche tout de suite ici, et je te l'envoie aussi par e-mail pour que tu puisses y revenir.</p>
-    <div class="capture-form" id="captureForm">
-      <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
-      <input type="text" id="email" placeholder="Ton e-mail" autocomplete="email">
-      <p class="capture-error" id="captureError">Vérifie ton prénom et ton e-mail, ma belle.</p>
-      <button type="button" class="btn-primary" onclick="handleCaptureSubmit()">Je découvre mon bilan</button>
-    </div>
-    <p class="capture-note">Aucun spam. Juste ton bilan, et de quoi t'aider à avancer si tu le souhaites.</p>
   </div>
 </section>
 
@@ -767,7 +686,8 @@ function selectOption(letter, btn) {
       currentQ++;
       renderQuestion();
     } else {
-      showScreen('capture');
+      computedProfile = computeProfile();
+      showResults(computedProfile);
     }
   }, 350);
 }
@@ -793,23 +713,6 @@ function computeProfile() {
   return answers[QUESTIONS.length - 1];
 }
 
-function handleCaptureSubmit() {
-  const firstName = document.getElementById('firstName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const emailValid = email.indexOf('@') > 0 && email.indexOf('.', email.indexOf('@')) > email.indexOf('@');
-  const errorEl = document.getElementById('captureError');
-
-  if (!firstName || !emailValid) {
-    errorEl.classList.add('visible');
-    return;
-  }
-  errorEl.classList.remove('visible');
-
-  computedProfile = computeProfile();
-  fbq('track', 'CompleteRegistration');
-  showResults(computedProfile);
-}
-
 function showResults(letter) {
   const profile = PROFILES[letter];
   document.getElementById('profileName').textContent = profile.name;
@@ -826,9 +729,6 @@ function restart() {
   currentQ = 0;
   answers = [];
   computedProfile = null;
-  document.getElementById('firstName').value = '';
-  document.getElementById('email').value = '';
-  document.getElementById('captureError').classList.remove('visible');
   showScreen('intro');
 }
 </script>

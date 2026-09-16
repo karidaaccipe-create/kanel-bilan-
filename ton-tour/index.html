@@ -508,12 +508,12 @@ fbq('track', 'PageView');
     <p class="eyebrow" style="text-align:center">✦ Presque terminé</p>
     <p class="capture-title">Où dois-je t'envoyer ton bilan personnel ?</p>
     <p class="capture-sub">Ton résultat s'affiche tout de suite ici, et je te l'envoie aussi par e-mail pour que tu puisses y revenir.</p>
-    <form class="capture-form" id="captureForm" onsubmit="return handleCaptureSubmit(event)">
-      <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name" required>
-      <input type="email" id="email" placeholder="Ton e-mail" autocomplete="email" required>
+    <div class="capture-form" id="captureForm">
+      <input type="text" id="firstName" placeholder="Ton prénom" autocomplete="given-name">
+      <input type="text" id="email" placeholder="Ton e-mail" autocomplete="email">
       <p class="capture-error" id="captureError">Vérifie ton prénom et ton e-mail, ma belle.</p>
-      <button type="submit" class="btn-primary">Je découvre mon bilan</button>
-    </form>
+      <button type="button" class="btn-primary" onclick="handleCaptureSubmit()">Je découvre mon bilan</button>
+    </div>
     <p class="capture-note">Aucun spam. Juste ton bilan, et de quoi t'aider à avancer si tu le souhaites.</p>
   </div>
 </section>
@@ -793,23 +793,21 @@ function computeProfile() {
   return answers[QUESTIONS.length - 1];
 }
 
-function handleCaptureSubmit(event) {
-  event.preventDefault();
+function handleCaptureSubmit() {
   const firstName = document.getElementById('firstName').value.trim();
   const email = document.getElementById('email').value.trim();
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const emailValid = email.indexOf('@') > 0 && email.indexOf('.', email.indexOf('@')) > email.indexOf('@');
   const errorEl = document.getElementById('captureError');
 
   if (!firstName || !emailValid) {
     errorEl.classList.add('visible');
-    return false;
+    return;
   }
   errorEl.classList.remove('visible');
 
   computedProfile = computeProfile();
   fbq('track', 'CompleteRegistration');
   showResults(computedProfile);
-  return false;
 }
 
 function showResults(letter) {
@@ -828,7 +826,8 @@ function restart() {
   currentQ = 0;
   answers = [];
   computedProfile = null;
-  document.getElementById('captureForm').reset();
+  document.getElementById('firstName').value = '';
+  document.getElementById('email').value = '';
   document.getElementById('captureError').classList.remove('visible');
   showScreen('intro');
 }

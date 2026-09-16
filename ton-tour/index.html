@@ -549,13 +549,6 @@ fbq('track', 'PageView');
 </section>
 
 <script>
-// ─── Config : intégration Systeme.io / e-mail automatique ───
-// Colle ici l'URL d'action de ton formulaire Systeme.io (ou un webhook Zapier relié à Systeme.io).
-// Le prénom, l'e-mail et le profil obtenu seront envoyés en arrière-plan à la soumission du formulaire.
-// Configure ensuite dans Systeme.io une campagne qui envoie le bilan correspondant au tag reçu.
-// Tant que ce champ est vide, le résultat reste affiché immédiatement mais aucun e-mail n'est déclenché automatiquement.
-const LEAD_ENDPOINT = '';
-
 const QUESTIONS = [
   {
     q: "Si l'on te demandait aujourd'hui : « Qu'est-ce que tu veux vraiment pour toi ? »",
@@ -815,21 +808,8 @@ function handleCaptureSubmit(event) {
 
   computedProfile = computeProfile();
   fbq('track', 'CompleteRegistration');
-  submitLead(firstName, email, computedProfile);
   showResults(computedProfile);
   return false;
-}
-
-function submitLead(firstName, email, profileLetter) {
-  if (!LEAD_ENDPOINT) return;
-  try {
-    const body = new URLSearchParams({
-      prenom: firstName,
-      email: email,
-      profil: PROFILES[profileLetter].name
-    });
-    fetch(LEAD_ENDPOINT, { method: 'POST', mode: 'no-cors', body });
-  } catch (e) { /* on n'interrompt jamais l'affichage du résultat */ }
 }
 
 function showResults(letter) {

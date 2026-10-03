@@ -379,6 +379,14 @@ fbq('track', 'PageView');
 
   .transition-cta-wrap { margin-top: 40px; }
 
+  .apres-resultat { margin-top: 30px; text-align: left; }
+  .apres-resultat .encart-email { background: #fff; border: 1px solid var(--insight-line); border-radius: 14px; padding: 16px 18px; margin-bottom: 22px; }
+  .apres-resultat .encart-email strong { display: block; font-size: 13px; letter-spacing: .06em; color: var(--sauge); margin-bottom: 6px; }
+  .apres-resultat p { font-family: var(--font-body); font-size: 16px; line-height: 1.6; color: var(--ink); margin: 0; }
+  .apres-resultat .bilan-titre { font-family: var(--font-title); font-size: 21px; font-weight: 600; color: var(--ecorce); margin: 0 0 6px; }
+  .btn-dm { display: block; width: 100%; text-align: center; margin-top: 14px; padding: 14px 20px; border: 1.5px solid var(--ecorce); border-radius: 999px; color: var(--ecorce); background: transparent; font-family: var(--font-body); font-size: 16px; font-weight: 700; text-decoration: none; transition: background .15s ease; }
+  .btn-dm:hover { background: var(--cream-deep); }
+
   .signature {
     margin-top: 48px;
     font-family: var(--font-script);
@@ -444,6 +452,15 @@ fbq('track', 'PageView');
     <h2 class="profile-name" id="profileName"></h2>
     <div class="profile-body" id="profileBody"></div>
     <button class="btn-cta" onclick="if(window.fbq){fbq('track','Contact');} window.location.href='https://karida-accipe.systeme.io/ae4fb70d'">Je veux aller plus loin</button>
+    <div class="apres-resultat">
+      <div class="encart-email">
+        <strong>AVANT DE FERMER CETTE PAGE</strong>
+        <p>Je t’envoie un email dans quelques minutes. Si tu ne le vois pas, regarde dans tes spams ou dans l’onglet Promotions, et déplace-le dans ta boîte principale. C’est là que je t’écris la suite.</p>
+      </div>
+      <p class="bilan-titre">Tu veux qu’on regarde ton résultat ensemble ?</p>
+      <p>Écris-moi le mot <strong>BILAN</strong> en message privé sur Instagram. On en parle toutes les deux, sans engagement.</p>
+      <a href="https://ig.me/m/kanel.alignee" target="_blank" rel="noopener" class="btn-dm">Je t’écris sur Instagram</a>
+    </div>
   </div>
 </section>
 

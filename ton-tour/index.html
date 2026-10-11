@@ -422,14 +422,14 @@ fbq('track', 'PageView');
   <h1 class="title">Quelle place reste-t-il à la femme derrière tout ce que tu portes ?</h1>
   <p class="intro-line">Tu es une mère, une compagne, une femme sur qui l'on peut compter…</p>
   <p class="intro-line emphasis">Mais dans la vie que tu vis aujourd'hui, quelle place reste-t-il réellement pour toi ?</p>
-  <p class="intro-line">En moins de 5 minutes, découvre si tu avances encore par choix… ou si tu tiens surtout parce qu'il le faut.</p>
+  <p class="intro-line">En 2 minutes, découvre si tu avances encore par choix… ou si tu tiens surtout parce qu'il le faut.</p>
   <div class="badge-row">
-    <span class="badge">12 questions</span>
-    <span class="badge">≈ 4 minutes</span>
+    <span class="badge">8 questions</span>
+    <span class="badge">2 minutes</span>
     <span class="badge">Sans jugement</span>
   </div>
   <p class="intro-disclaimer">Ce quiz n'est pas là pour te juger ni te mettre dans une case. Il t'aide simplement à faire le point, avec honnêteté.</p>
-  <button class="btn-primary" onclick="fbq('track','Lead'); startQuiz()">Je fais le point</button>
+  <button class="btn-primary" onclick="if(window.fbq){fbq('trackCustom','QuizDemarre');} startQuiz()">Je fais le point</button>
 </section>
 
 <!-- ═══════════════ QUIZ ═══════════════ -->
@@ -437,7 +437,7 @@ fbq('track', 'PageView');
   <div class="quiz-header">
     <button class="back-link" id="btnBack" onclick="prevQuestion()">← précédent</button>
     <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
-    <span class="progress-label" id="progressLabel">Question 1 sur 12</span>
+    <span class="progress-label" id="progressLabel">Question 1 sur 8</span>
   </div>
   <div class="quiz-body">
     <p class="question-text" id="questionText"></p>
@@ -451,9 +451,9 @@ fbq('track', 'PageView');
     <p class="profile-eyebrow">Ton profil</p>
     <h2 class="profile-name" id="profileName"></h2>
     <div class="profile-body" id="profileBody"></div>
-    <button class="btn-cta" onclick="if(window.fbq){fbq('track','Contact');} window.location.href='https://karida-accipe.systeme.io/ae4fb70d'">Je veux aller plus loin</button>
+    <button class="btn-cta" onclick="if(window.fbq){fbq('track','ViewContent',{content_name:'Le Cercle'});} window.location.href=LIEN_CERCLE">Je veux aller plus loin</button>
     <div class="apres-resultat">
-      <div class="encart-email">
+      <div class="encart-email" id="encartEmail">
         <strong>AVANT DE FERMER CETTE PAGE</strong>
         <p>Je t’envoie un email dans quelques minutes. Si tu ne le vois pas, regarde dans tes spams ou dans l’onglet Promotions, et déplace-le dans ta boîte principale. C’est là que je t’écris la suite.</p>
       </div>
@@ -464,122 +464,98 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-<!-- ═══════════════ TRANSITION / OFFRE ═══════════════ -->
-<section id="transition" class="screen">
-  <div class="results-body">
-    <p class="transition-lede">Ce résultat n'est pas une case.<br>C'est un point de départ.</p>
+<!-- ═══════════════ RÉSULTAT PRÊT (avant l'email) ═══════════════ -->
+<section id="pret" class="screen">
+  <div class="results-body" style="text-align:center">
+    <p class="eyebrow">✦ C'est fait 🌿</p>
+    <p class="transition-lede">Ton résultat est prêt.</p>
     <div class="transition-body">
-      <p>Prendre conscience de l'endroit où tu te trouves est une première étape.</p>
-      <p>Mais savoir que tu t'es oubliée ne suffit pas toujours pour réussir à te retrouver seule.</p>
-      <p class="strong">J'ai moi aussi été cette femme qui assurait, avançait et s'adaptait jusqu'à ne plus savoir ce qu'elle voulait réellement.</p>
-      <p>C'est pour cela que j'ai créé <strong>Alignée</strong> : un accompagnement structuré pour t'aider à mieux te connaître, faire le tri et recommencer à construire une vie choisie consciemment.</p>
-      <p>Pas pour devenir une autre femme.<br>Pour retrouver celle qui s'est effacée en chemin.</p>
+      <p>Dis-moi où te l'envoyer : tu le découvres tout de suite à l'écran, et tu le reçois aussi par email pour le garder.</p>
     </div>
     <div class="transition-cta-wrap">
-      <!-- Vérifie que ce lien pointe bien vers la page de vente Alignée en cours -->
-      <button class="btn-cta" onclick="fbq('track','Contact'); window.location.href='https://www.kanel-alignee.com/4456178c'">Découvrir Alignée</button>
+      <button class="btn-cta" onclick="allerVersEmail()">Je découvre mon résultat</button>
     </div>
-    <p class="signature">Respect non négociable.<br>Sois la meilleure amie de ton âme.</p>
     <button class="restart-btn" onclick="restart()">↩ Refaire le quiz</button>
   </div>
 </section>
 
 <script>
+// ── LIENS À COLLER ICI ──────────────────────────────────────────
+// Une page d'inscription Systeme.io par profil (chacune ajoute son tag).
+// Tant qu'un lien est vide, le résultat s'affiche directement (sans email).
+const PAGES_EMAIL = {
+  A: 'https://www.kanel-alignee.com/quiz-ton-profils-pillier', // Pilier
+  B: 'https://www.kanel-alignee.com/quiz-ton-profils-veille', // Veille
+  C: 'https://www.kanel-alignee.com/quiz-ton-profils-tournant'  // Tournant
+};
+const LIEN_CERCLE = 'https://karida-accipe.systeme.io/ae4fb70d'; // Le Cercle 47 €
+// Après l'inscription, Systeme.io renvoie vers :
+//   https://karidaaccipe-create.github.io/kanel-bilan-/ton-tour/?profil=A   (ou B, ou C)
+// ─────────────────────────────────────────────────────────────────
+
 const QUESTIONS = [
   {
-    q: "Si l'on te demandait aujourd'hui : « Qu'est-ce que tu veux vraiment pour toi ? »",
+    q: "Si l'on te demandait : « Qu'est-ce que tu veux vraiment pour toi ? »",
     options: [
-      { t: "Je ne saurais pas vraiment quoi répondre.", l: 'A' },
-      { t: "J'ai quelques envies, mais elles passent toujours après le reste.", l: 'B' },
-      { t: "Je recommence à identifier ce que je veux et à lui faire une place.", l: 'C' }
+      { t: "Je ne saurais pas quoi répondre.", l: 'A' },
+      { t: "J'ai des envies, mais elles passent après le reste.", l: 'B' },
+      { t: "Je recommence à leur faire une place.", l: 'C' }
     ]
   },
   {
     q: "Quand tu as enfin un moment sans obligation…",
     options: [
-      { t: "Je suis tellement fatiguée que je ne fais rien ou je scrolle sans même en profiter.", l: 'A' },
-      { t: "J'en profite souvent pour avancer sur ce qui reste à faire.", l: 'B' },
-      { t: "J'arrive parfois à choisir quelque chose qui me fait réellement du bien.", l: 'C' }
+      { t: "Trop fatiguée, je scrolle sans en profiter.", l: 'A' },
+      { t: "J'avance sur ce qui reste à faire.", l: 'B' },
+      { t: "Je choisis parfois ce qui me fait du bien.", l: 'C' }
     ]
   },
   {
-    q: "Dans ton quotidien, tes besoins sont…",
+    q: "Quand tu dis « oui » à quelqu'un…",
     options: [
-      { t: "Presque toujours les derniers sur la liste.", l: 'A' },
-      { t: "Présents dans ma tête, mais rarement prioritaires.", l: 'B' },
-      { t: "De plus en plus considérés dans mes décisions.", l: 'C' }
+      { t: "C'est souvent par obligation ou culpabilité.", l: 'A' },
+      { t: "J'accepte parfois alors que je voudrais dire non.", l: 'B' },
+      { t: "Je vérifie si ce « oui » me respecte aussi.", l: 'C' }
     ]
   },
   {
-    q: "Lorsque tu dis « oui » à quelqu'un…",
+    q: "Présente-toi sans parler de tes enfants, de ton couple ou de ton travail…",
     options: [
-      { t: "C'est souvent parce que je me sens obligée ou coupable de refuser.", l: 'A' },
-      { t: "Il m'arrive d'accepter alors que je préférerais dire non.", l: 'B' },
-      { t: "Je vérifie davantage si ce « oui » me respecte aussi.", l: 'C' }
+      { t: "Je serais bloquée.", l: 'A' },
+      { t: "Je trouverais quelques mots, difficilement.", l: 'B' },
+      { t: "Je parlerais de mes valeurs et de mes envies.", l: 'C' }
     ]
   },
   {
-    q: "Si tu devais te présenter sans parler de tes enfants, de ton couple ou de ton travail…",
+    q: "Quand ton corps te dit qu'il est fatigué…",
     options: [
-      { t: "Je serais probablement bloquée.", l: 'A' },
-      { t: "Je trouverais quelques mots, mais l'exercice serait difficile.", l: 'B' },
-      { t: "Je pourrais parler de mes valeurs, de mes envies et de ce qui m'anime.", l: 'C' }
+      { t: "Je continue jusqu'à ne plus pouvoir.", l: 'A' },
+      { t: "Je ralentis, mais je culpabilise.", l: 'B' },
+      { t: "Je l'écoute avant d'atteindre ma limite.", l: 'C' }
     ]
   },
   {
-    q: "La vie que tu mènes actuellement ressemble-t-elle à celle que tu aurais consciemment choisie ?",
+    q: "Dans ton couple ou ta famille…",
     options: [
-      { t: "Non. J'ai surtout suivi ce qu'il fallait faire.", l: 'A' },
-      { t: "En partie, mais je me suis adaptée jusqu'à oublier certains de mes choix.", l: 'B' },
-      { t: "Pas complètement, mais je commence à reprendre la main.", l: 'C' }
-    ]
-  },
-  {
-    q: "Lorsque quelque chose ne te convient plus…",
-    options: [
-      { t: "Je continue parce que je pense ne pas avoir le choix.", l: 'A' },
-      { t: "J'y pense beaucoup, mais j'ai du mal à agir.", l: 'B' },
-      { t: "Je commence à poser des limites ou à envisager des changements concrets.", l: 'C' }
+      { t: "Tout repose sur moi, je n'ai pas le droit de lâcher.", l: 'A' },
+      { t: "Je porte beaucoup, sans savoir comment répartir.", l: 'B' },
+      { t: "Je commence à dire ce que je ne veux plus porter seule.", l: 'C' }
     ]
   },
   {
     q: "Quelle phrase ressemble le plus à ton quotidien ?",
     options: [
       { t: "« Je dois tenir, même quand je n'en peux plus. »", l: 'A' },
-      { t: "« Je sais que quelque chose doit changer, mais je ne sais pas par où commencer. »", l: 'B' },
-      { t: "« Je ne veux plus seulement tenir. Je veux recommencer à vivre. »", l: 'C' }
-    ]
-  },
-  {
-    q: "Quand ton corps te signale qu'il est fatigué…",
-    options: [
-      { t: "Je continue jusqu'à ne plus pouvoir avancer.", l: 'A' },
-      { t: "Je ralentis un peu, tout en culpabilisant.", l: 'B' },
-      { t: "J'apprends à l'écouter avant d'atteindre ma limite.", l: 'C' }
-    ]
-  },
-  {
-    q: "Dans ton couple ou ta famille, tu as parfois l'impression que…",
-    options: [
-      { t: "Tout repose sur toi et que tu n'as pas le droit de lâcher.", l: 'A' },
-      { t: "Tu portes beaucoup, mais tu ne sais pas comment redistribuer cette charge.", l: 'B' },
-      { t: "Tu commences à exprimer ce dont tu as besoin et ce que tu ne veux plus porter seule.", l: 'C' }
-    ]
-  },
-  {
-    q: "Face aux attentes de la famille, de ton entourage ou de la société…",
-    options: [
-      { t: "Je fais ce qui est attendu, même lorsque cela ne me ressemble pas.", l: 'A' },
-      { t: "Je ressens le décalage, mais le regard des autres m'influence encore beaucoup.", l: 'B' },
-      { t: "Je commence à distinguer leurs attentes de mes propres choix.", l: 'C' }
+      { t: "« Quelque chose doit changer, mais par où commencer ? »", l: 'B' },
+      { t: "« Je ne veux plus seulement tenir. Je veux vivre. »", l: 'C' }
     ]
   },
   {
     q: "Aujourd'hui, où en es-tu intérieurement ?",
     options: [
-      { t: "Je suis épuisée et je fonctionne essentiellement en mode survie.", l: 'A' },
-      { t: "Je sens que je me suis perdue, mais je ne sais pas encore comment revenir à moi.", l: 'B' },
-      { t: "Je suis prête à faire le tri et à choisir davantage la vie que je veux construire.", l: 'C' }
+      { t: "Épuisée, en mode survie.", l: 'A' },
+      { t: "Perdue, sans savoir comment revenir à moi.", l: 'B' },
+      { t: "Prête à faire le tri et à choisir ma vie.", l: 'C' }
     ]
   }
 ];
@@ -704,7 +680,9 @@ function selectOption(letter, btn) {
       renderQuestion();
     } else {
       computedProfile = computeProfile();
-      showResults(computedProfile);
+      try { sessionStorage.setItem('kanelProfil', computedProfile); } catch (e) {}
+      if (window.fbq) { fbq('trackCustom', 'QuizTermine'); }
+      showScreen('pret');
     }
   }, 350);
 }
@@ -730,17 +708,35 @@ function computeProfile() {
   return answers[QUESTIONS.length - 1];
 }
 
-function showResults(letter) {
+function showResults(letter, apresInscription) {
   const profile = PROFILES[letter];
+  const encart = document.getElementById('encartEmail');
+  if (encart) encart.style.display = apresInscription ? '' : 'none';
   document.getElementById('profileName').textContent = profile.name;
   document.getElementById('profileBody').innerHTML = profile.html;
   showScreen('results');
-  fbq('trackCustom', 'QuizTermine');
 }
 
-function showTransition() {
-  showScreen('transition');
+function allerVersEmail() {
+  const url = PAGES_EMAIL[computedProfile];
+  if (url) {
+    window.location.href = url;
+  } else {
+    showResults(computedProfile);
+  }
 }
+
+// Retour depuis Systeme.io après l'inscription : ?profil=A, B ou C
+(function retourInscription() {
+  let p = null;
+  try { p = new URLSearchParams(window.location.search).get('profil'); } catch (e) {}
+  if (p) p = p.toUpperCase();
+  if (p && PROFILES[p]) {
+    computedProfile = p;
+    if (window.fbq) { fbq('track', 'Lead', { content_name: 'Bilan ' + PROFILES[p].name }); }
+    showResults(p, true);
+  }
+})();
 
 function restart() {
   currentQ = 0;

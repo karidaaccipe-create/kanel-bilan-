@@ -464,20 +464,6 @@ fbq('track', 'PageView');
   </div>
 </section>
 
-<!-- ═══════════════ RÉSULTAT PRÊT (avant l'email) ═══════════════ -->
-<section id="pret" class="screen">
-  <div class="results-body" style="text-align:center">
-    <p class="eyebrow">✦ C'est fait 🌿</p>
-    <p class="transition-lede">Ton résultat est prêt.</p>
-    <div class="transition-body">
-      <p>Dis-moi où te l'envoyer : tu le découvres tout de suite à l'écran, et tu le reçois aussi par email pour le garder.</p>
-    </div>
-    <div class="transition-cta-wrap">
-      <button class="btn-cta" onclick="allerVersEmail()">Je découvre mon résultat</button>
-    </div>
-    <button class="restart-btn" onclick="restart()">↩ Refaire le quiz</button>
-  </div>
-</section>
 
 <script>
 // ── LIENS À COLLER ICI ──────────────────────────────────────────
@@ -682,7 +668,7 @@ function selectOption(letter, btn) {
       computedProfile = computeProfile();
       try { sessionStorage.setItem('kanelProfil', computedProfile); } catch (e) {}
       if (window.fbq) { fbq('trackCustom', 'QuizTermine'); }
-      showScreen('pret');
+      allerVersEmail();
     }
   }, 350);
 }

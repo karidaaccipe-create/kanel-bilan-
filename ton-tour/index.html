@@ -719,7 +719,9 @@ function allerVersEmail() {
   if (p) p = p.toUpperCase();
   if (p && PROFILES[p]) {
     computedProfile = p;
-    if (window.fbq) { fbq('track', 'Lead', { content_name: 'Bilan ' + PROFILES[p].name }); }
+    // Lead seulement au retour de l'inscription Systeme.io (pas quand elle relit depuis un email)
+    const depuisInscription = (document.referrer || '').indexOf('kanel-alignee.com') !== -1;
+    if (depuisInscription && window.fbq) { fbq('track', 'Lead', { content_name: 'Bilan ' + PROFILES[p].name }); }
     showResults(p, true);
   }
 })();
